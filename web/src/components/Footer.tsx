@@ -10,7 +10,7 @@ export function Footer() {
           alt="Home Angels Cuidadores de Idosos"
           width={180}
           height={80}
-          className="h-10 w-auto opacity-90"
+          className="h-10 w-auto"
         />
         <p className="text-sm text-white/70">
           {siteConfig.unitName} · {siteConfig.whatsappDisplay} · {siteConfig.address}
