@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useState, type FocusEvent, type FormEvent } from "react";
 import { captureAndGetUtmParams } from "@/lib/utm";
+import { normalizePhone } from "@/lib/phone";
 
 type SubmitState = "idle" | "submitting" | "error";
 
@@ -11,22 +12,47 @@ export function LeadForm() {
   const router = useRouter();
   const [state, setState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [phoneError, setPhoneError] = useState<string | null>(null);
+  const [consentError, setConsentError] = useState<string | null>(null);
+
+  function handlePhoneBlur(event: FocusEvent<HTMLInputElement>) {
+    const value = event.currentTarget.value;
+    if (!value) {
+      setPhoneError(null);
+      return;
+    }
+    setPhoneError(normalizePhone(value) ? null : "Telefone deve ter DDD + número.");
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setState("submitting");
     setErrorMessage(null);
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+
+    const phoneValue = String(formData.get("phone") ?? "");
+    if (!normalizePhone(phoneValue)) {
+      setPhoneError("Telefone deve ter DDD + número.");
+      return;
+    }
+
+    const consentGiven = formData.get("consent") === "on";
+    if (!consentGiven) {
+      setConsentError("É necessário autorizar o contato para continuar.");
+      return;
+    }
+    setConsentError(null);
+
+    setState("submitting");
     const utm = captureAndGetUtmParams();
 
     const payload = {
       name: formData.get("name"),
-      phone: formData.get("phone"),
+      phone: phoneValue,
       careFor: formData.get("careFor"),
       urgency: formData.get("urgency"),
-      consent: formData.get("consent") === "on",
+      consent: consentGiven,
       ...utm,
       page_url: window.location.href,
     };
@@ -87,9 +113,20 @@ export function LeadForm() {
           required
           autoComplete="tel"
           inputMode="tel"
-          className="rounded-lg border border-[var(--color-border)] px-4 py-3 text-base outline-none focus:border-[var(--color-primary)]"
+          aria-invalid={phoneError ? true : undefined}
+          aria-describedby={phoneError ? "phone-error" : undefined}
+          onBlur={handlePhoneBlur}
+          onChange={() => phoneError && setPhoneError(null)}
+          className={`rounded-lg border px-4 py-3 text-base outline-none focus:border-[var(--color-primary)] ${
+            phoneError ? "border-red-500" : "border-[var(--color-border)]"
+          }`}
           placeholder="(19) 99999-9999"
         />
+        {phoneError ? (
+          <p id="phone-error" role="alert" className="text-sm font-semibold text-red-600">
+            {phoneError}
+          </p>
+        ) : null}
       </div>
 
       <fieldset className="flex flex-col gap-1">
@@ -124,21 +161,36 @@ export function LeadForm() {
         </div>
       </fieldset>
 
-      <label className="flex items-start gap-2 text-sm text-[var(--color-muted)]">
-        <input type="checkbox" name="consent" required className="mt-1" />
-        <span>
-          Autorizo o contato da Home Angels Burle Marx sobre este pedido, de
-          acordo com a{" "}
-          <Link
-            href="/privacidade"
-            target="_blank"
-            className="underline hover:text-[var(--color-primary)]"
-          >
-            política de privacidade
-          </Link>
-          .
-        </span>
-      </label>
+      <div className="flex flex-col gap-1">
+        <label className="flex items-start gap-2 text-sm text-[var(--color-ink)]">
+          <input
+            type="checkbox"
+            name="consent"
+            required
+            aria-invalid={consentError ? true : undefined}
+            aria-describedby={consentError ? "consent-error" : undefined}
+            onChange={(event) => event.currentTarget.checked && setConsentError(null)}
+            className={`mt-1 ${consentError ? "outline outline-2 outline-red-500" : ""}`}
+          />
+          <span>
+            Autorizo o contato da Home Angels Burle Marx sobre este pedido, de
+            acordo com a{" "}
+            <Link
+              href="/privacidade"
+              target="_blank"
+              className="underline hover:text-[var(--color-primary)]"
+            >
+              política de privacidade
+            </Link>
+            .
+          </span>
+        </label>
+        {consentError ? (
+          <p id="consent-error" role="alert" className="text-sm font-semibold text-red-600">
+            {consentError}
+          </p>
+        ) : null}
+      </div>
 
       {errorMessage ? (
         <p role="alert" className="text-sm font-semibold text-red-600">
