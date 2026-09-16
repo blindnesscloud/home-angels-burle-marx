@@ -34,11 +34,14 @@ export function Included() {
 
         <ul className="mx-auto grid max-w-2xl gap-4">
           {ITEMS.map((item, index) => (
-            <SectionReveal key={item} delay={index * 0.08}>
-              <li className="flex items-center gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-alt)] p-4 transition-[border-color,box-shadow] duration-300 hover:border-[var(--color-secondary)] hover:shadow-md">
-                <CheckIcon />
-                <span className="text-[var(--color-ink)]">{item}</span>
-              </li>
+            <SectionReveal
+              key={item}
+              as="li"
+              delay={index * 0.08}
+              className="flex items-center gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-alt)] p-4 transition-[border-color,box-shadow] duration-300 hover:border-[var(--color-secondary)] hover:shadow-md"
+            >
+              <CheckIcon />
+              <span className="text-[var(--color-ink)]">{item}</span>
             </SectionReveal>
           ))}
         </ul>
