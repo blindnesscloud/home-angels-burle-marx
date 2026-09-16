@@ -43,7 +43,7 @@ export function Header() {
           href={buildWhatsappLink(
             "Olá! Vim pela página da Home Angels Burle Marx e quero saber mais sobre cuidadores de idosos."
           )}
-          className="rounded-lg bg-[var(--color-secondary)] px-3 py-2 text-sm font-bold text-white transition hover:brightness-95 sm:px-4 sm:text-base"
+          className="rounded-lg bg-[var(--color-primary-dark)] px-3 py-2 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base"
         >
           {siteConfig.whatsappDisplay}
         </Link>
