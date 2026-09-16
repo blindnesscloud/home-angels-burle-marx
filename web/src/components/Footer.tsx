@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 
 export function Footer() {
@@ -18,6 +19,12 @@ export function Footer() {
         <p className="text-xs text-white/50">
           Unidade franqueada independente. Todo Cuidado é Nosso®.
         </p>
+        <Link
+          href="/privacidade"
+          className="text-xs text-white/50 underline hover:text-white/80"
+        >
+          Política de Privacidade
+        </Link>
       </div>
     </footer>
   );

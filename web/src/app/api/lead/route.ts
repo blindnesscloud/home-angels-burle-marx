@@ -65,11 +65,19 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  if (body.consent !== true) {
+    return NextResponse.json(
+      { error: "É necessário autorizar o contato para enviar o formulário." },
+      { status: 400 }
+    );
+  }
+
   const payload: LeadPayload = {
     name: body.name.trim(),
     phone,
     careFor: body.careFor as LeadPayload["careFor"],
     urgency: body.urgency as LeadPayload["urgency"],
+    consent: true,
     utm_source: isNonEmptyString(body.utm_source) ? body.utm_source : null,
     utm_campaign: isNonEmptyString(body.utm_campaign)
       ? body.utm_campaign
