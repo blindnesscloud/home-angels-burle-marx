@@ -7,7 +7,11 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-[#12354D] to-[#226185]" />
       <HeroReveal className="relative mx-auto flex max-w-[1120px] flex-col items-center gap-6 px-4 py-16 text-center sm:py-24">
         <HeroRevealItem>
-          <span className="rounded-full bg-white/10 px-4 py-1 text-sm font-semibold text-[var(--color-accent)]">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1 text-sm font-semibold text-white">
+            <span
+              aria-hidden="true"
+              className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]"
+            />
             Rede nacional de cuidadores de idosos • Unidade Burle Marx
           </span>
         </HeroRevealItem>
@@ -35,7 +39,7 @@ export function Hero() {
         </HeroRevealItem>
 
         <HeroRevealItem>
-          <p className="text-sm text-white/70">
+          <p className="text-sm text-white/85">
             Sem compromisso · Resposta rápida da equipe local
           </p>
         </HeroRevealItem>
