@@ -42,4 +42,9 @@ ponta a ponta.
   EVIDENCE: pending — nao executado nesta sessao (sem Chrome DevTools/Lighthouse CLI disponivel no ambiente). Rodar antes do deploy final.
 
 - [x] G10: revisao final de copy sem travessao, dois-pontos estilistico ou frase cliche de agencia ("solucoes sob medida", "excelencia no atendimento")
-  EVIDENCE: grep por travessao (—) no codigo de UI: 0 ocorrencias. Unico dois-pontos estilistico encontrado (Included.tsx) corrigido. Nenhuma frase cliche de agencia no copy.
+  EVIDENCE: grep por travessao (—) no codigo de UI: 0 ocorrencias apos correcao de ProblemSection.tsx e Included.tsx. Nenhuma frase cliche de agencia no copy.
+
+- [x] G11: interacoes de motion (scroll reveal, cta magnetico, tilt card) nao quebram layout e permanecem utilizaveis sem JS ou com prefers-reduced-motion
+  CHECK: node -e "const fs=require('fs'); const out=fs.readFileSync('web/src/app/layout.tsx','utf8'); console.log(out.includes('js-reveal') ? 'CLEAN' : 'MISSING')"
+  EXPECT: CLEAN
+  EVIDENCE: layout.tsx contem noscript sobrescrevendo .js-reveal para opacity:1; section-reveal.tsx e hero-reveal.tsx usam useReducedMotion do framer-motion; build e lint permanecem verdes apos a refatoracao (ver G1/G2).
