@@ -1,12 +1,35 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { buildWhatsappLink, siteConfig } from "@/lib/site-config";
 
 // Header intencionalmente sem menu de navegação: qualquer link de saída
-// tira o visitante do funil pago. Só logo + contato direto.
+// tira o visitante do funil pago. Só logo + contato direto. O estado
+// "scrolled" (sombra + fundo levemente mais opaco) é o mesmo conceito de
+// header "vivo" do padrão Prexter, sem escondê-lo ao rolar — para público
+// 45+, o contato precisa continuar sempre visível e alcançável.
 export function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 8);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-white/95 backdrop-blur">
+    <header
+      className={`sticky top-0 z-50 border-b bg-white/95 backdrop-blur transition-shadow duration-300 ${
+        scrolled
+          ? "border-[var(--color-border)] shadow-sm"
+          : "border-transparent"
+      }`}
+    >
       <div className="mx-auto flex max-w-[1120px] items-center justify-between px-4 py-3">
         <Image
           src="/logo/home-angels-logo-positivo.png"

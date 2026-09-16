@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { captureAndGetUtmParams } from "@/lib/utm";
@@ -25,6 +26,7 @@ export function LeadForm() {
       phone: formData.get("phone"),
       careFor: formData.get("careFor"),
       urgency: formData.get("urgency"),
+      consent: formData.get("consent") === "on",
       ...utm,
       page_url: window.location.href,
     };
@@ -121,6 +123,22 @@ export function LeadForm() {
           </label>
         </div>
       </fieldset>
+
+      <label className="flex items-start gap-2 text-sm text-[var(--color-muted)]">
+        <input type="checkbox" name="consent" required className="mt-1" />
+        <span>
+          Autorizo o contato da Home Angels Burle Marx sobre este pedido, de
+          acordo com a{" "}
+          <Link
+            href="/privacidade"
+            target="_blank"
+            className="underline hover:text-[var(--color-primary)]"
+          >
+            política de privacidade
+          </Link>
+          .
+        </span>
+      </label>
 
       {errorMessage ? (
         <p role="alert" className="text-sm font-semibold text-red-600">
