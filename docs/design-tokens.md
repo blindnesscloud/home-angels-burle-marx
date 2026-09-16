@@ -41,12 +41,34 @@ atrás de texto de corpo ou formulário (risco de contraste/legibilidade para p�
 
 ## Motion
 
-- Scroll reveal discreto (fade + translateY 12px) — sem exagero, público-alvo pode achar
-  animações agressivas "amadoras" ou distrativas.
-- Sem parallax pesado, sem autoplay de vídeo com som.
-- Contador de anos/atendimentos com count-up ao entrar em viewport (reforço de
-  credibilidade, mesmo padrão do Prexter).
-- Todas as imagens com lazy loading nativo + blur-up placeholder (padrão unlazy).
+Conceito herdado do padrão Prexter (framer-motion, easing spring suave,
+resposta 1:1 ao ponteiro), mas contido: sem cursor customizado, sem trilha
+orgânica, sem paleta dark/tech — o objetivo aqui é transmitir cuidado e
+confiança, não "produto de tecnologia".
+
+- `web/src/components/motion/section-reveal.tsx` — scroll reveal via
+  framer-motion `whileInView` (opacity + y + scale leve), sem blur (precisa
+  ficar nítido para leitura rápida sob estresse). Respeita
+  `prefers-reduced-motion` e permanece visível sem JavaScript via `.js-reveal`
+  sobrescrito em `<noscript>` no layout.
+- `web/src/components/motion/hero-reveal.tsx` — entrada escalonada (stagger)
+  do hero ao carregar a página, não ao rolar.
+- `web/src/components/MagneticCta.tsx` — versão contida do botão magnético
+  Prexter: desloca até ~25% do offset do cursor (metade da intensidade
+  original) e brilho radial branco discreto. Só reage a mouse; em touch
+  (maioria do tráfego de Ads) é um link comum.
+- `web/src/components/TiltCard.tsx` — versão contida do tilt-parallax
+  Prexter: inclinação máxima 5° (Prexter usa 10°), brilho verde institucional
+  em vez de lima, sem o elemento de marca em contra-parallax. Ignora eventos
+  de touch para não tremer durante o scroll no celular.
+- `web/src/app/template.tsx` — transição suave (fade + leve subida) entre `/`
+  e `/obrigado`, para a confirmação de envio parecer natural, não um reload.
+- `web/src/components/SuccessCheck.tsx` — check animado (stroke se desenha)
+  na página de obrigado, reforço de confiança no momento de maior ansiedade
+  do visitante.
+- Sem parallax pesado, sem autoplay de vídeo com som, sem splash screen de
+  carregamento (cada segundo de atraso custa dinheiro em Ads).
+- Todas as imagens com lazy loading nativo (padrão unlazy).
 
 ## Acessibilidade / performance (não-negociável para LP de Ads)
 

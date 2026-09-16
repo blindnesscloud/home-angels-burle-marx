@@ -41,7 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <noscript>
-          <style>{`.opacity-0 { opacity: 1 !important; }`}</style>
+          <style>{`.js-reveal { opacity: 1 !important; transform: none !important; }`}</style>
         </noscript>
         {children}
       </body>

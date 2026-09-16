@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ConversionTracking } from "@/components/ConversionTracking";
+import { SuccessCheck } from "@/components/SuccessCheck";
 import { buildWhatsappLink } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export default function ObrigadoPage() {
       <ConversionTracking />
       <Header />
       <main className="flex flex-1 flex-col items-center justify-center gap-6 px-4 py-20 text-center">
+        <SuccessCheck />
         <h1 className="max-w-xl text-3xl font-bold text-[var(--color-primary)] sm:text-4xl">
           Recebemos seu contato!
         </h1>

@@ -1,4 +1,5 @@
-import { Reveal } from "./Reveal";
+import { SectionReveal } from "./motion/section-reveal";
+import { TiltCard } from "./TiltCard";
 
 const SCENARIOS = [
   {
@@ -19,7 +20,7 @@ const SCENARIOS = [
   {
     title: "A família não tem tempo ou preparo para cuidar sozinha",
     description:
-      "Trabalho, filhos, distância — é possível garantir cuidado de qualidade mesmo assim.",
+      "Trabalho, filhos e distância não precisam impedir um cuidado de qualidade.",
   },
 ] as const;
 
@@ -27,24 +28,26 @@ export function ProblemSection() {
   return (
     <section className="bg-[var(--color-bg)] px-4 py-16 sm:py-24">
       <div className="mx-auto max-w-[1120px]">
-        <Reveal>
+        <SectionReveal>
           <h2 className="mb-10 text-center text-2xl font-bold text-[var(--color-primary)] sm:text-3xl">
             Isso é com você se...
           </h2>
-        </Reveal>
+        </SectionReveal>
 
         <div className="grid gap-6 sm:grid-cols-2">
           {SCENARIOS.map((scenario, index) => (
-            <Reveal key={scenario.title} delayMs={index * 80}>
-              <div className="h-full rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-alt)] p-6">
-                <h3 className="mb-2 text-lg font-bold text-[var(--color-ink)]">
-                  {scenario.title}
-                </h3>
-                <p className="text-[var(--color-muted)]">
-                  {scenario.description}
-                </p>
-              </div>
-            </Reveal>
+            <SectionReveal key={scenario.title} delay={index * 0.08}>
+              <TiltCard className="h-full rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-alt)]">
+                <div className="h-full p-6">
+                  <h3 className="mb-2 text-lg font-bold text-[var(--color-ink)]">
+                    {scenario.title}
+                  </h3>
+                  <p className="text-[var(--color-muted)]">
+                    {scenario.description}
+                  </p>
+                </div>
+              </TiltCard>
+            </SectionReveal>
           ))}
         </div>
       </div>
