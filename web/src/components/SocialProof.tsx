@@ -9,6 +9,7 @@ const TRUST_POINTS = [
 
 export function SocialProof() {
   const hasTestimonials = siteConfig.testimonials.length > 0;
+  const hasStats = siteConfig.stats.length > 0;
 
   return (
     <section className="bg-[var(--color-bg-alt)] px-4 py-16 sm:py-24">
@@ -23,6 +24,24 @@ export function SocialProof() {
             </span>
           ))}
         </SectionReveal>
+
+        {/* Números concretos (anos de operação, atendimentos etc.) só aparecem
+            com dado real cadastrado em siteConfig.stats — mesmo motivo dos
+            depoimentos: um número não verificado é pior que nenhum número. */}
+        {hasStats ? (
+          <SectionReveal className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {siteConfig.stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="text-3xl font-bold text-[var(--color-primary)]">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-[var(--color-muted)]">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </SectionReveal>
+        ) : null}
 
         {/* Bloco de depoimentos só aparece com conteúdo real cadastrado em
             siteConfig.testimonials — nunca placeholder visível em produção. */}
