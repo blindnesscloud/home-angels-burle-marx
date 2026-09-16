@@ -22,17 +22,23 @@ type SectionRevealProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
+  // "li" quando o filho direto precisa ser item de lista semantica (ex:
+  // dentro de <ul>) -- um <div> ali quebra a auditoria de acessibilidade
+  // "listitem"/"list" (Lighthouse pegou isso em Included.tsx).
+  as?: "div" | "li";
 };
 
 export function SectionReveal({
   children,
   className,
   delay = 0,
+  as = "div",
 }: SectionRevealProps) {
   const shouldReduceMotion = useReducedMotion();
+  const MotionTag = motion[as];
 
   return (
-    <motion.div
+    <MotionTag
       className={`js-reveal ${className ?? ""}`}
       suppressHydrationWarning
       initial="hidden"
@@ -46,6 +52,6 @@ export function SectionReveal({
       }}
     >
       {children}
-    </motion.div>
+    </MotionTag>
   );
 }
