@@ -59,3 +59,9 @@ ponta a ponta.
   CHECK: node -e "const fs=require('fs'); const form=fs.readFileSync('web/src/components/LeadForm.tsx','utf8'); const api=fs.readFileSync('web/src/app/api/lead/route.ts','utf8'); const priv=fs.existsSync('web/src/app/privacidade/page.tsx'); console.log(form.includes('name=\"consent\"') && api.includes('body.consent') && priv ? 'CLEAN' : 'MISSING')"
   EXPECT: CLEAN
   EVIDENCE: recomendacao do relatorio docs/reviews/estrategista.md (secao 5, item 1). LeadForm.tsx tem checkbox obrigatorio de consentimento linkando /privacidade; route.ts rejeita com 400 se consent != true; pagina /privacidade criada e linkada no footer. TODO(cliente/juridico): revisar o texto de /privacidade com advogado antes de publicar.
+
+- [x] G16: formulario da feedback visual proprio (nao so bolha nativa do navegador) para telefone invalido e consentimento nao marcado
+  EVIDENCE: recomendacoes 1/2/4 de docs/reviews/testador-e-juiz.md (juiz de conversao). LeadForm.tsx valida telefone com normalizePhone (web/src/lib/phone.ts, mesma logica compartilhada com a API) no blur e no submit, mostrando erro inline vermelho; checkbox de consentimento agora usa text-[var(--color-ink)] (era --color-muted, contraste mais fraco) e mostra erro proprio com outline vermelho se o submit for tentado sem marcar. Testado com Playwright: erro de telefone aparece/some corretamente, erro de consentimento aparece ao tentar enviar sem marcar.
+
+- [x] G17: prova social tem espaco estrutural para numeros concretos reais, sem fabricar dado nao verificado
+  EVIDENCE: recomendacao 3 de docs/reviews/testador-e-juiz.md (juiz apontou prova social como ponto mais fraco: 6/10). siteConfig.stats (web/src/lib/site-config.ts) segue o mesmo padrao de siteConfig.testimonials -- vazio por padrao, SocialProof.tsx so renderiza o bloco de numeros se houver conteudo real cadastrado. Nenhum numero de anos de atuacao ou atendimentos foi inventado.

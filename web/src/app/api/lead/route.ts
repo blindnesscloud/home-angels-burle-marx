@@ -1,22 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { crm } from "@/lib/crm";
 import type { LeadPayload } from "@/lib/crm";
+import { normalizePhone } from "@/lib/phone";
 
 const CARE_FOR_VALUES = new Set(["idoso", "outro"]);
 const URGENCY_VALUES = new Set(["imediata", "planejando"]);
-const PHONE_DIGITS_MIN = 10;
-const PHONE_DIGITS_MAX = 13;
 
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
-}
-
-function normalizePhone(raw: string): string | null {
-  const digits = raw.replace(/\D/g, "");
-  if (digits.length < PHONE_DIGITS_MIN || digits.length > PHONE_DIGITS_MAX) {
-    return null;
-  }
-  return digits;
 }
 
 export async function POST(request: NextRequest) {

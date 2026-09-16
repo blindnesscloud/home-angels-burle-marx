@@ -9,6 +9,11 @@ export type Testimonial = {
   name: string;
 };
 
+export type CredibilityStat = {
+  value: string;
+  label: string;
+};
+
 export const siteConfig = {
   unitName: "Home Angels Burle Marx",
   // TODO(cliente): substituir pelo telefone/WhatsApp real da unidade.
@@ -22,6 +27,13 @@ export const siteConfig = {
   // depoimentos até existir conteúdo real (nunca publicar depoimento
   // fictício apresentado como genuíno).
   testimonials: [] as Testimonial[],
+  // TODO(cliente): preencher com números reais e verificáveis da unidade
+  // Burle Marx (ex: anos de operação da unidade, famílias atendidas). Vazio
+  // de propósito pelo mesmo motivo dos depoimentos — o juiz de conversão
+  // (docs/reviews/testador-e-juiz.md) apontou a prova social como o ponto
+  // mais fraco da LP, mas inventar um número não verificado é pior do que
+  // não mostrar nenhum.
+  stats: [] as CredibilityStat[],
 };
 
 export function buildWhatsappLink(prefilledMessage: string) {
