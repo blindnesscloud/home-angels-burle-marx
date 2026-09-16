@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:launch-ready": "node scripts/check-launch-ready.mjs"
   },
   "dependencies": {
     "framer-motion": "^13.3.0",

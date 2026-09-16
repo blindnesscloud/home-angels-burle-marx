@@ -33,21 +33,33 @@ npm run dev
 cd web
 npm run build
 npm run lint
+npm run check:launch-ready   # roda antes de cada deploy, ver abaixo
 ```
 
 ## Pendências do cliente antes do lançamento
+
+`npm run check:launch-ready` falha com a lista completa enquanto estas
+pendências não forem resolvidas — rodar sempre antes de publicar:
 
 1. **Logo vetorial oficial** — os PNGs em `assets/logo/` e `web/public/logo/`
    foram extraídos do manual de marca como referência de cor/proporção.
    Solicitar ao SAF (+55 19 2042-1454) os arquivos vetoriais originais.
 2. **Telefone/WhatsApp real** da unidade — hoje é um placeholder em
-   `web/src/lib/site-config.ts`.
-3. **Depoimentos reais** de famílias atendidas, com autorização de uso — hoje
-   são placeholders em `web/src/components/SocialProof.tsx`.
+   `web/src/lib/site-config.ts` (`whatsappNumber`/`whatsappDisplay`).
+3. **Depoimentos reais** de famílias atendidas, com autorização de uso —
+   `siteConfig.testimonials` está vazio de propósito; a seção de prova social
+   simplesmente esconde o bloco de depoimentos até ter conteúdo real (nunca
+   mostramos um placeholder fictício em produção).
 4. **URL do Inbound Webhook do Go High Level** — ver `docs/crm-integration.md`.
 5. **ID/label de conversão do Google Ads** — hoje é um placeholder em
    `web/src/lib/site-config.ts` (`googleAdsConversionLabel`), sem isso a
    conversão não é reportada ao Google Ads.
+
+## Revisões de qualidade
+
+`docs/reviews/` reúne avaliações independentes feitas sobre a LP (simulação de
+usuário real, recomendações de estratégia de aquisição/CRM). Ler antes de
+priorizar a próxima rodada de mudanças.
 
 ## Deploy
 
