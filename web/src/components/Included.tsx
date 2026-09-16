@@ -1,4 +1,4 @@
-import { Reveal } from "./Reveal";
+import { SectionReveal } from "./motion/section-reveal";
 
 const ITEMS = [
   "Cuidador ou enfermeiro qualificado e selecionado",
@@ -26,20 +26,20 @@ export function Included() {
   return (
     <section className="bg-[var(--color-bg)] px-4 py-16 sm:py-24">
       <div className="mx-auto max-w-[1120px]">
-        <Reveal>
+        <SectionReveal>
           <h2 className="mb-10 text-center text-2xl font-bold text-[var(--color-primary)] sm:text-3xl">
             O que está incluso
           </h2>
-        </Reveal>
+        </SectionReveal>
 
         <ul className="mx-auto grid max-w-2xl gap-4">
           {ITEMS.map((item, index) => (
-            <Reveal key={item} delayMs={index * 80}>
-              <li className="flex items-center gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-alt)] p-4">
+            <SectionReveal key={item} delay={index * 0.08}>
+              <li className="flex items-center gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-alt)] p-4 transition-[border-color,box-shadow] duration-300 hover:border-[var(--color-secondary)] hover:shadow-md">
                 <CheckIcon />
                 <span className="text-[var(--color-ink)]">{item}</span>
               </li>
-            </Reveal>
+            </SectionReveal>
           ))}
         </ul>
       </div>

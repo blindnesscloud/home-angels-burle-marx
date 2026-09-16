@@ -1,4 +1,5 @@
-import { Reveal } from "./Reveal";
+import { SectionReveal } from "./motion/section-reveal";
+import { TiltCard } from "./TiltCard";
 
 const STEPS = [
   {
@@ -17,7 +18,7 @@ const STEPS = [
     number: "3",
     title: "Início do plantão",
     description:
-      "Plantão diário, noturno ou 24h — no formato que fizer sentido para a sua família.",
+      "Plantão diário, noturno ou 24h, no formato que fizer sentido para a sua família.",
   },
   {
     number: "4",
@@ -31,27 +32,29 @@ export function HowItWorks() {
   return (
     <section className="bg-[var(--color-bg-alt)] px-4 py-16 sm:py-24">
       <div className="mx-auto max-w-[1120px]">
-        <Reveal>
+        <SectionReveal>
           <h2 className="mb-10 text-center text-2xl font-bold text-[var(--color-primary)] sm:text-3xl">
             Como funciona
           </h2>
-        </Reveal>
+        </SectionReveal>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((step, index) => (
-            <Reveal key={step.number} delayMs={index * 80}>
-              <div className="h-full rounded-xl bg-white p-6 text-center shadow-sm">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-primary)] text-xl font-bold text-white">
-                  {step.number}
+            <SectionReveal key={step.number} delay={index * 0.08}>
+              <TiltCard className="h-full rounded-xl bg-white shadow-sm">
+                <div className="h-full p-6 text-center">
+                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-primary)] text-xl font-bold text-white">
+                    {step.number}
+                  </div>
+                  <h3 className="mb-2 font-bold text-[var(--color-ink)]">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-[var(--color-muted)]">
+                    {step.description}
+                  </p>
                 </div>
-                <h3 className="mb-2 font-bold text-[var(--color-ink)]">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-[var(--color-muted)]">
-                  {step.description}
-                </p>
-              </div>
-            </Reveal>
+              </TiltCard>
+            </SectionReveal>
           ))}
         </div>
       </div>

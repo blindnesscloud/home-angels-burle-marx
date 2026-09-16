@@ -1,5 +1,5 @@
 import { LeadForm } from "./LeadForm";
-import { Reveal } from "./Reveal";
+import { SectionReveal } from "./motion/section-reveal";
 
 export function FinalCta() {
   return (
@@ -8,7 +8,7 @@ export function FinalCta() {
       className="scroll-mt-20 bg-[var(--color-primary)] px-4 py-16 sm:py-24"
     >
       <div className="mx-auto max-w-[1120px]">
-        <Reveal className="mb-10 text-center text-white">
+        <SectionReveal className="mb-10 text-center text-white">
           <h2 className="mb-3 text-2xl font-bold sm:text-3xl">
             Fale agora com a equipe Home Angels Burle Marx
           </h2>
@@ -16,11 +16,11 @@ export function FinalCta() {
             Preencha os dados abaixo. Nossa equipe local retorna rapidamente
             para entender a necessidade da sua família, sem compromisso.
           </p>
-        </Reveal>
+        </SectionReveal>
 
-        <Reveal delayMs={100}>
+        <SectionReveal delay={0.1}>
           <LeadForm />
-        </Reveal>
+        </SectionReveal>
       </div>
     </section>
   );
