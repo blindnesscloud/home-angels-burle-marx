@@ -52,6 +52,9 @@ ponta a ponta.
 - [ ] G13: Lighthouse mobile: performance >= 85, acessibilidade >= 90
   EVIDENCE: pending — nao executado nesta sessao (sem Chrome DevTools/Lighthouse CLI disponivel no ambiente). Rodar antes do deploy final.
 
+- [x] G15: contraste de texto >= WCAG AA (4.5:1 texto normal, 3:1 texto grande/negrito) em todos os pares cor-de-texto/fundo usados na LP
+  EVIDENCE: calculo manual de contraste (formula WCAG, luminancia relativa) sobre os pares reais usados no codigo, ja que Lighthouse nao esta disponivel neste ambiente (ver G13). Dois problemas reais encontrados e corrigidos: (1) badge do hero usava texto areia (#D1AE86) sobre fundo composito azul -- 2.57:1, corrigido trocando para texto branco (5.33:1) e movendo a cor areia para um indicador decorativo; (2) botao de WhatsApp do header usava texto branco 14px bold sobre verde secundario -- 3.67:1, abaixo do minimo para texto que nao se qualifica como "grande" -- corrigido trocando o fundo para --color-primary-dark (9.99:1). Demais pares (corpo de texto, CTA verde principal em 18px bold, cards) ja passavam AA. Reexecutar com Lighthouse real antes do deploy para confirmar (G13).
+
 - [x] G14: formulario exige consentimento explicito e existe politica de privacidade acessivel (dado de saude e categoria sensivel LGPD)
   CHECK: node -e "const fs=require('fs'); const form=fs.readFileSync('web/src/components/LeadForm.tsx','utf8'); const api=fs.readFileSync('web/src/app/api/lead/route.ts','utf8'); const priv=fs.existsSync('web/src/app/privacidade/page.tsx'); console.log(form.includes('name=\"consent\"') && api.includes('body.consent') && priv ? 'CLEAN' : 'MISSING')"
   EXPECT: CLEAN
