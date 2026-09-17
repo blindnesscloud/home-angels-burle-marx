@@ -1,6 +1,3 @@
-import { SectionReveal } from "./motion/section-reveal";
-import { TiltCard } from "./TiltCard";
-
 const SCENARIOS = [
   {
     title: "Voltou de uma internação e precisa de cuidados em casa",
@@ -26,28 +23,25 @@ const SCENARIOS = [
 
 export function ProblemSection() {
   return (
-    <section className="bg-[var(--color-bg)] px-4 py-16 sm:py-24">
-      <div className="mx-auto max-w-[1120px]">
-        <SectionReveal>
-          <h2 className="mb-10 text-center text-2xl font-bold text-[var(--color-primary)] sm:text-3xl">
-            Isso é com você se...
-          </h2>
-        </SectionReveal>
+    <section className="bg-paper px-6 py-16 sm:py-24">
+      <div className="mx-auto max-w-[720px]">
+        <h2 className="mb-10 font-display text-3xl font-medium text-ink sm:text-4xl">
+          Isso é com você, se
+        </h2>
 
-        <div className="grid gap-6 sm:grid-cols-2">
-          {SCENARIOS.map((scenario, index) => (
-            <SectionReveal key={scenario.title} delay={index * 0.08}>
-              <TiltCard className="h-full rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-alt)]">
-                <div className="h-full p-6">
-                  <h3 className="mb-2 text-lg font-bold text-[var(--color-ink)]">
-                    {scenario.title}
-                  </h3>
-                  <p className="text-[var(--color-muted)]">
-                    {scenario.description}
-                  </p>
-                </div>
-              </TiltCard>
-            </SectionReveal>
+        <div className="border-t border-border">
+          {SCENARIOS.map((scenario) => (
+            <div
+              key={scenario.title}
+              className="grid gap-1 border-b border-border py-6 sm:grid-cols-[1fr_1.4fr] sm:gap-8"
+            >
+              <h3 className="text-lg font-semibold text-ink">
+                {scenario.title}
+              </h3>
+              <p className="text-muted">
+                {scenario.description}
+              </p>
+            </div>
           ))}
         </div>
       </div>
