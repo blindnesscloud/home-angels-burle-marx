@@ -18,10 +18,10 @@ export default function ObrigadoPage() {
       <Header />
       <main className="flex flex-1 flex-col items-center justify-center gap-6 px-4 py-20 text-center">
         <SuccessCheck />
-        <h1 className="max-w-xl text-3xl font-bold text-[var(--color-primary)] sm:text-4xl">
+        <h1 className="max-w-xl font-display text-3xl font-medium text-navy sm:text-4xl">
           Recebemos seu contato!
         </h1>
-        <p className="max-w-md text-lg text-[var(--color-muted)]">
+        <p className="max-w-md text-lg text-muted">
           Nossa equipe da unidade Burle Marx vai retornar em breve. Se
           preferir, fale com a gente agora mesmo pelo WhatsApp.
         </p>
@@ -29,7 +29,7 @@ export default function ObrigadoPage() {
           href={buildWhatsappLink(
             "Olá! Acabei de preencher o formulário da Home Angels Burle Marx."
           )}
-          className="rounded-lg bg-[var(--color-secondary)] px-8 py-4 text-lg font-bold text-white transition hover:brightness-95"
+          className="rounded-lg bg-forest px-8 py-4 text-lg font-bold text-white transition hover:brightness-95"
         >
           Chamar no WhatsApp agora
         </Link>

@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--color-ink)] px-4 py-10 text-center text-white">
+    <footer className="bg-ink px-4 py-10 text-center text-paper">
       <div className="mx-auto flex max-w-[1120px] flex-col items-center gap-4">
         <Image
           src="/logo/home-angels-logo-negativo.png"
@@ -13,15 +13,15 @@ export function Footer() {
           height={80}
           className="h-10 w-auto"
         />
-        <p className="text-sm text-white/70">
+        <p className="text-sm text-paper/70">
           {siteConfig.unitName} · {siteConfig.whatsappDisplay} · {siteConfig.address}
         </p>
-        <p className="text-xs text-white/50">
-          Unidade franqueada independente. Todo Cuidado é Nosso®.
+        <p className="font-script text-xl text-sand-light">
+          Todo Cuidado é Nosso
         </p>
         <Link
           href="/privacidade"
-          className="text-xs text-white/50 underline hover:text-white/80"
+          className="text-xs text-paper/50 underline hover:text-paper/80"
         >
           Política de Privacidade
         </Link>
