@@ -14,7 +14,7 @@ export function SuccessCheck() {
       initial={{ scale: 0.6, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="flex h-20 w-20 items-center justify-center rounded-full bg-[var(--color-secondary)]"
+      className="flex h-20 w-20 items-center justify-center rounded-full bg-forest"
     >
       <svg viewBox="0 0 24 24" className="h-10 w-10" fill="none">
         <motion.path

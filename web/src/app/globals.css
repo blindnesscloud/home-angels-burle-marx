@@ -1,30 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --color-bg: #ffffff;
-  --color-bg-alt: #f7f5f1;
-  --color-primary: #226185;
-  --color-primary-dark: #17475f;
-  --color-secondary: #5c925c;
-  --color-accent: #d1ae86;
-  --color-ink: #1e1e1e;
-  --color-muted: #5a5a5a;
-  --color-border: #e6e2d8;
-  --color-success: #5c925c;
+  --color-paper: #f7f2e7;
+  --color-paper-dark: #efe6d3;
+  --color-ink: #17242e;
+  --color-muted: #5c5647;
+  --color-navy: #1f4e68;
+  --color-navy-deep: #16394c;
+  --color-forest: #3e6b42;
+  --color-sand: #c99a66;
+  --color-sand-light: #e8c9a0;
+  --color-border: #ded2b8;
 }
 
 @theme inline {
-  --color-bg: var(--color-bg);
-  --color-bg-alt: var(--color-bg-alt);
-  --color-primary: var(--color-primary);
-  --color-primary-dark: var(--color-primary-dark);
-  --color-secondary: var(--color-secondary);
-  --color-accent: var(--color-accent);
+  --color-paper: var(--color-paper);
+  --color-paper-dark: var(--color-paper-dark);
   --color-ink: var(--color-ink);
   --color-muted: var(--color-muted);
+  --color-navy: var(--color-navy);
+  --color-navy-deep: var(--color-navy-deep);
+  --color-forest: var(--color-forest);
+  --color-sand: var(--color-sand);
+  --color-sand-light: var(--color-sand-light);
   --color-border: var(--color-border);
-  --color-success: var(--color-success);
   --font-sans: var(--font-body);
+  --font-display: var(--font-display);
   --font-script: var(--font-script);
 }
 
@@ -34,7 +35,7 @@ html {
 
 /* LP de marca fixa: nao seguimos dark mode do sistema, a identidade visual e definida. */
 body {
-  background: var(--color-bg);
+  background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
 }

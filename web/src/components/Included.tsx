@@ -1,5 +1,3 @@
-import { SectionReveal } from "./motion/section-reveal";
-
 const ITEMS = [
   "Cuidador ou enfermeiro qualificado e selecionado",
   "Supervisão técnica constante da equipe Home Angels",
@@ -12,7 +10,7 @@ function CheckIcon() {
     <svg
       viewBox="0 0 24 24"
       aria-hidden="true"
-      className="h-6 w-6 shrink-0 text-[var(--color-secondary)]"
+      className="mt-1 h-5 w-5 shrink-0 text-forest"
     >
       <path
         fill="currentColor"
@@ -24,25 +22,18 @@ function CheckIcon() {
 
 export function Included() {
   return (
-    <section className="bg-[var(--color-bg)] px-4 py-16 sm:py-24">
-      <div className="mx-auto max-w-[1120px]">
-        <SectionReveal>
-          <h2 className="mb-10 text-center text-2xl font-bold text-[var(--color-primary)] sm:text-3xl">
-            O que está incluso
-          </h2>
-        </SectionReveal>
+    <section className="bg-paper px-6 py-16 sm:py-24">
+      <div className="mx-auto max-w-[900px]">
+        <h2 className="mb-10 font-display text-3xl font-medium text-ink sm:text-4xl">
+          O que está incluso
+        </h2>
 
-        <ul className="mx-auto grid max-w-2xl gap-4">
-          {ITEMS.map((item, index) => (
-            <SectionReveal
-              key={item}
-              as="li"
-              delay={index * 0.08}
-              className="flex items-center gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-alt)] p-4 transition-[border-color,box-shadow] duration-300 hover:border-[var(--color-secondary)] hover:shadow-md"
-            >
+        <ul className="grid gap-x-12 gap-y-6 sm:grid-cols-2">
+          {ITEMS.map((item) => (
+            <li key={item} className="flex items-start gap-3">
               <CheckIcon />
-              <span className="text-[var(--color-ink)]">{item}</span>
-            </SectionReveal>
+              <span className="text-lg text-ink">{item}</span>
+            </li>
           ))}
         </ul>
       </div>

@@ -1,6 +1,3 @@
-import { SectionReveal } from "./motion/section-reveal";
-import { TiltCard } from "./TiltCard";
-
 const STEPS = [
   {
     number: "1",
@@ -30,31 +27,36 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <section className="bg-[var(--color-bg-alt)] px-4 py-16 sm:py-24">
-      <div className="mx-auto max-w-[1120px]">
-        <SectionReveal>
-          <h2 className="mb-10 text-center text-2xl font-bold text-[var(--color-primary)] sm:text-3xl">
-            Como funciona
-          </h2>
-        </SectionReveal>
+    <section className="bg-paper-dark px-6 py-16 sm:py-24">
+      <div className="mx-auto max-w-[720px]">
+        <h2 className="mb-14 font-display text-3xl font-medium text-ink sm:text-4xl">
+          Como funciona
+        </h2>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="relative">
+          <div
+            aria-hidden="true"
+            className="absolute left-[19px] top-2 bottom-2 w-px bg-border"
+          />
           {STEPS.map((step, index) => (
-            <SectionReveal key={step.number} delay={index * 0.08}>
-              <TiltCard className="h-full rounded-xl bg-white shadow-sm">
-                <div className="h-full p-6 text-center">
-                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-primary)] text-xl font-bold text-white">
-                    {step.number}
-                  </div>
-                  <h3 className="mb-2 font-bold text-[var(--color-ink)]">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-[var(--color-muted)]">
-                    {step.description}
-                  </p>
-                </div>
-              </TiltCard>
-            </SectionReveal>
+            <div
+              key={step.number}
+              className={`relative flex gap-6 ${
+                index < STEPS.length - 1 ? "pb-12" : ""
+              }`}
+            >
+              <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy font-display text-lg font-medium text-white">
+                {step.number}
+              </div>
+              <div className="pt-1">
+                <h3 className="mb-1 text-lg font-semibold text-ink">
+                  {step.title}
+                </h3>
+                <p className="max-w-md text-muted">
+                  {step.description}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
