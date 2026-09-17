@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, Caveat } from "next/font/google";
+import { Fraunces, Public_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 
-const bodyFont = Inter({
+const displayFont = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+  axes: ["opsz", "SOFT"],
+  weight: "variable",
+  display: "swap",
+});
+
+const bodyFont = Public_Sans({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
@@ -37,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${bodyFont.variable} ${scriptFont.variable} h-full antialiased`}
+      className={`${displayFont.variable} ${bodyFont.variable} ${scriptFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <noscript>

@@ -83,11 +83,11 @@ export function LeadForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto flex max-w-lg flex-col gap-4 rounded-2xl bg-white p-6 shadow-xl sm:p-8"
+      className="mx-auto flex max-w-lg flex-col gap-4 rounded-2xl bg-paper p-6 sm:p-8"
       noValidate
     >
       <div className="flex flex-col gap-1">
-        <label htmlFor="name" className="text-sm font-semibold text-[var(--color-ink)]">
+        <label htmlFor="name" className="text-sm font-semibold text-ink">
           Seu nome
         </label>
         <input
@@ -97,13 +97,13 @@ export function LeadForm() {
           required
           minLength={2}
           autoComplete="name"
-          className="rounded-lg border border-[var(--color-border)] px-4 py-3 text-base outline-none focus:border-[var(--color-primary)]"
+          className="rounded-lg border border-border px-4 py-3 text-base outline-none focus:border-navy"
           placeholder="Como podemos te chamar?"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor="phone" className="text-sm font-semibold text-[var(--color-ink)]">
+        <label htmlFor="phone" className="text-sm font-semibold text-ink">
           WhatsApp com DDD
         </label>
         <input
@@ -117,8 +117,8 @@ export function LeadForm() {
           aria-describedby={phoneError ? "phone-error" : undefined}
           onBlur={handlePhoneBlur}
           onChange={() => phoneError && setPhoneError(null)}
-          className={`rounded-lg border px-4 py-3 text-base outline-none focus:border-[var(--color-primary)] ${
-            phoneError ? "border-red-500" : "border-[var(--color-border)]"
+          className={`rounded-lg border px-4 py-3 text-base outline-none focus:border-navy ${
+            phoneError ? "border-red-500" : "border-border"
           }`}
           placeholder="(19) 99999-9999"
         />
@@ -130,15 +130,15 @@ export function LeadForm() {
       </div>
 
       <fieldset className="flex flex-col gap-1">
-        <legend className="mb-1 text-sm font-semibold text-[var(--color-ink)]">
+        <legend className="mb-1 text-sm font-semibold text-ink">
           Para quem é o cuidado?
         </legend>
         <div className="flex gap-4">
-          <label className="flex items-center gap-2 text-[var(--color-ink)]">
+          <label className="flex items-center gap-2 text-ink">
             <input type="radio" name="careFor" value="idoso" required defaultChecked />
             Um idoso da família
           </label>
-          <label className="flex items-center gap-2 text-[var(--color-ink)]">
+          <label className="flex items-center gap-2 text-ink">
             <input type="radio" name="careFor" value="outro" />
             Outra pessoa
           </label>
@@ -146,15 +146,15 @@ export function LeadForm() {
       </fieldset>
 
       <fieldset className="flex flex-col gap-1">
-        <legend className="mb-1 text-sm font-semibold text-[var(--color-ink)]">
+        <legend className="mb-1 text-sm font-semibold text-ink">
           Quando você precisa começar?
         </legend>
         <div className="flex gap-4">
-          <label className="flex items-center gap-2 text-[var(--color-ink)]">
+          <label className="flex items-center gap-2 text-ink">
             <input type="radio" name="urgency" value="imediata" required defaultChecked />
             O quanto antes
           </label>
-          <label className="flex items-center gap-2 text-[var(--color-ink)]">
+          <label className="flex items-center gap-2 text-ink">
             <input type="radio" name="urgency" value="planejando" />
             Estou me planejando
           </label>
@@ -162,7 +162,7 @@ export function LeadForm() {
       </fieldset>
 
       <div className="flex flex-col gap-1">
-        <label className="flex items-start gap-2 text-sm text-[var(--color-ink)]">
+        <label className="flex items-start gap-2 text-sm text-ink">
           <input
             type="checkbox"
             name="consent"
@@ -178,7 +178,7 @@ export function LeadForm() {
             <Link
               href="/privacidade"
               target="_blank"
-              className="underline hover:text-[var(--color-primary)]"
+              className="underline hover:text-navy"
             >
               política de privacidade
             </Link>
@@ -201,12 +201,12 @@ export function LeadForm() {
       <button
         type="submit"
         disabled={state === "submitting"}
-        className="mt-2 rounded-lg bg-[var(--color-secondary)] px-6 py-4 text-lg font-bold text-white transition hover:brightness-95 disabled:opacity-60"
+        className="mt-2 rounded-lg bg-forest px-6 py-4 text-lg font-bold text-white transition hover:brightness-95 disabled:opacity-60"
       >
         {state === "submitting" ? "Enviando..." : "Quero uma avaliação gratuita"}
       </button>
 
-      <p className="text-center text-xs text-[var(--color-muted)]">
+      <p className="text-center text-xs text-muted">
         Sem compromisso. Seus dados são usados só para retornarmos seu contato.
       </p>
     </form>

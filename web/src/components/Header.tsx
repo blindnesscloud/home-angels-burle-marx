@@ -24,9 +24,9 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b bg-white/95 backdrop-blur transition-shadow duration-300 ${
+      className={`sticky top-0 z-50 border-b bg-paper/95 backdrop-blur transition-shadow duration-300 ${
         scrolled
-          ? "border-[var(--color-border)] shadow-sm"
+          ? "border-border shadow-sm"
           : "border-transparent"
       }`}
     >
@@ -43,7 +43,7 @@ export function Header() {
           href={buildWhatsappLink(
             "Olá! Vim pela página da Home Angels Burle Marx e quero saber mais sobre cuidadores de idosos."
           )}
-          className="rounded-lg bg-[var(--color-primary-dark)] px-3 py-2 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base"
+          className="rounded-lg bg-navy-deep px-3 py-2 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base"
         >
           {siteConfig.whatsappDisplay}
         </Link>
