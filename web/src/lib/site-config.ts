@@ -1,18 +1,8 @@
-// Configuração central da unidade. Substituir pelos dados reais antes do
-// lançamento — nenhum destes valores é real, são placeholders de desenvolvimento.
+// Configuração central da unidade. Substituir pelos placeholders restantes
+// pelos dados reais antes do lançamento.
 // `npm run check:launch-ready` falha o build se algum placeholder aqui não
 // tiver sido substituído.
 export const PLACEHOLDER_WHATSAPP_NUMBER = "5519000000000";
-
-export type Testimonial = {
-  quote: string;
-  name: string;
-};
-
-export type CredibilityStat = {
-  value: string;
-  label: string;
-};
 
 export const siteConfig = {
   unitName: "Home Angels Burle Marx",
@@ -21,19 +11,10 @@ export const siteConfig = {
   whatsappDisplay: "(19) 0000-0000",
   // TODO(cliente): substituir pelo endereço real da unidade franqueada.
   address: "Burle Marx, Campinas/SP",
+  // CNPJ vem do mockup aprovado no Figma (PREXTER).
+  cnpj: "61.703.144/0001-07",
+  instagramUrl: "https://www.instagram.com/homeangelsburlemarx/",
   googleAdsConversionLabel: "TODO_CONVERSION_LABEL",
-  // TODO(cliente): inserir depoimentos reais, com autorização de uso do nome.
-  // Vazio de propósito — a seção de prova social esconde o bloco de
-  // depoimentos até existir conteúdo real (nunca publicar depoimento
-  // fictício apresentado como genuíno).
-  testimonials: [] as Testimonial[],
-  // TODO(cliente): preencher com números reais e verificáveis da unidade
-  // Burle Marx (ex: anos de operação da unidade, famílias atendidas). Vazio
-  // de propósito pelo mesmo motivo dos depoimentos — o juiz de conversão
-  // (docs/reviews/testador-e-juiz.md) apontou a prova social como o ponto
-  // mais fraco da LP, mas inventar um número não verificado é pior do que
-  // não mostrar nenhum.
-  stats: [] as CredibilityStat[],
 };
 
 export function buildWhatsappLink(prefilledMessage: string) {
