@@ -17,21 +17,21 @@ export default function PrivacidadePage() {
   return (
     <>
       <Header />
-      <main className="mx-auto flex max-w-2xl flex-1 flex-col gap-6 px-4 py-16">
-        <h1 className="font-display text-3xl font-medium text-navy">
+      <main className="mx-auto flex max-w-720 flex-col gap-24 px-20 py-64">
+        <h1 className="font-display text-38 leading-[1.15] tracking-[-0.03em] text-ink">
           Política de Privacidade
         </h1>
 
-        <p className="text-muted">
+        <p className="font-inter text-16 leading-[1.15] text-black/80">
           Esta página explica, de forma direta, o que acontece com os dados
           que você preenche no formulário desta página.
         </p>
 
-        <section className="flex flex-col gap-2">
-          <h2 className="text-xl font-bold text-ink">
+        <section className="flex flex-col gap-8">
+          <h2 className="font-inter text-24 leading-[1.15] font-bold text-ink">
             Quais dados coletamos
           </h2>
-          <p className="text-muted">
+          <p className="font-inter text-16 leading-[1.15] text-black/80">
             Nome, telefone/WhatsApp, para quem é o cuidado solicitado e a
             urgência informada por você no formulário. Não pedimos diagnóstico
             ou condição de saúde específica neste formulário — esses detalhes,
@@ -40,22 +40,22 @@ export default function PrivacidadePage() {
           </p>
         </section>
 
-        <section className="flex flex-col gap-2">
-          <h2 className="text-xl font-bold text-ink">
+        <section className="flex flex-col gap-8">
+          <h2 className="font-inter text-24 leading-[1.15] font-bold text-ink">
             Para que usamos
           </h2>
-          <p className="text-muted">
+          <p className="font-inter text-16 leading-[1.15] text-black/80">
             Exclusivamente para retornar seu contato e entender a necessidade
             da sua família antes de qualquer atendimento. Não vendemos nem
             compartilhamos seus dados com terceiros para fins de publicidade.
           </p>
         </section>
 
-        <section className="flex flex-col gap-2">
-          <h2 className="text-xl font-bold text-ink">
+        <section className="flex flex-col gap-8">
+          <h2 className="font-inter text-24 leading-[1.15] font-bold text-ink">
             Onde seus dados ficam
           </h2>
-          <p className="text-muted">
+          <p className="font-inter text-16 leading-[1.15] text-black/80">
             Seus dados são enviados para o sistema de relacionamento com
             clientes (CRM) usado pela unidade {siteConfig.unitName} para
             organizar o atendimento. O acesso é restrito à equipe responsável
@@ -63,11 +63,11 @@ export default function PrivacidadePage() {
           </p>
         </section>
 
-        <section className="flex flex-col gap-2">
-          <h2 className="text-xl font-bold text-ink">
+        <section className="flex flex-col gap-8">
+          <h2 className="font-inter text-24 leading-[1.15] font-bold text-ink">
             Seus direitos
           </h2>
-          <p className="text-muted">
+          <p className="font-inter text-16 leading-[1.15] text-black/80">
             Você pode pedir a qualquer momento a exclusão dos seus dados ou
             esclarecimento sobre como eles são usados, falando diretamente com
             a unidade pelo WhatsApp {siteConfig.whatsappDisplay}.

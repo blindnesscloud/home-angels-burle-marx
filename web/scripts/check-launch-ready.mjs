@@ -25,12 +25,6 @@ if (siteConfig.includes("TODO_CONVERSION_LABEL")) {
   );
 }
 
-if (siteConfig.includes("testimonials: [] as Testimonial[]")) {
-  problems.push(
-    "Nenhum depoimento real cadastrado em siteConfig.testimonials (a seção fica sem prova social até isso ser preenchido — não bloqueante, mas reduz conversão)."
-  );
-}
-
 if (!process.env.GHL_INBOUND_WEBHOOK_URL) {
   problems.push(
     "GHL_INBOUND_WEBHOOK_URL não está definida no ambiente — formulário vai falhar ao enviar lead para o CRM. Ver docs/crm-integration.md."

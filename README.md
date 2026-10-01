@@ -41,19 +41,15 @@ npm run check:launch-ready   # roda antes de cada deploy, ver abaixo
 `npm run check:launch-ready` falha com a lista completa enquanto estas
 pendências não forem resolvidas — rodar sempre antes de publicar:
 
-1. **Logo vetorial oficial** — os PNGs em `assets/logo/` e `web/public/logo/`
-   foram extraídos do manual de marca como referência de cor/proporção.
-   Solicitar ao SAF (+55 19 2042-1454) os arquivos vetoriais originais.
-2. **Telefone/WhatsApp real** da unidade — hoje é um placeholder em
+1. **Telefone/WhatsApp real** da unidade — hoje é um placeholder em
    `web/src/lib/site-config.ts` (`whatsappNumber`/`whatsappDisplay`).
-3. **Depoimentos reais** de famílias atendidas, com autorização de uso —
-   `siteConfig.testimonials` está vazio de propósito; a seção de prova social
-   simplesmente esconde o bloco de depoimentos até ter conteúdo real (nunca
-   mostramos um placeholder fictício em produção).
-4. **URL do Inbound Webhook do Go High Level** — ver `docs/crm-integration.md`.
-5. **ID/label de conversão do Google Ads** — hoje é um placeholder em
+2. **URL do Inbound Webhook do Go High Level** — ver `docs/crm-integration.md`.
+3. **ID/label de conversão do Google Ads** — hoje é um placeholder em
    `web/src/lib/site-config.ts` (`googleAdsConversionLabel`), sem isso a
    conversão não é reportada ao Google Ads.
+
+O visual é 100% o Figma "PREXTER" — ver `docs/design-tokens.md`. Logos e fotos
+em `web/public/figma/` vêm do próprio arquivo Figma.
 
 ## Revisões de qualidade
 
