@@ -1,6 +1,6 @@
 # Gates: LP Home Angels Burle Marx
 
-OWNS: web/**, docs/**, .claude/**, assets/**
+OWNS: web/**, docs/**, assets/**
 
 Scope: LP fiel 100% ao Figma "PREXTER" (frames Home Page Desktop, Homepage
 Mobile e Muito Obrigado), formulário integrado ao Go High Level via webhook.

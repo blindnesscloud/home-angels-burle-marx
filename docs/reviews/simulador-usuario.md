@@ -144,8 +144,7 @@ possível.
 
 ## Screenshots capturados (referência local, não versionados)
 
-Salvos em
-`C:\Users\psive\AppData\Local\Temp\claude\f--HomeAngelsBurleMax\7f9259d6-5ddf-4dc2-b435-cd83cc126cec\scratchpad\screenshots\`:
+Salvos localmente durante o teste (não versionados):
 - `01_hero_first_look.png`, `02_full_page.png`
 - `03_scroll_00.png` a `03_scroll_05.png` (rolagem completa)
 - `04_after_hero_cta_click.png`, `05_form_area.png`

@@ -4,9 +4,8 @@ Landing page de conversão para campanhas de Google Ads da unidade franqueada
 Home Angels Burle Marx (cuidadores de idosos). Página única, um formulário,
 integrada ao Go High Level.
 
-Este projeto segue o mesmo mecanismo de qualidade estabelecido em `F:\Prexter`
-(stack, skills de agente, disciplina de gates) como padrão a ser reaproveitado
-em outros clientes.
+Este projeto segue o mesmo padrão de qualidade estabelecido no projeto Prexter
+(stack e disciplina de gates), para ser reaproveitado em outros clientes.
 
 ## Estrutura
 
@@ -14,8 +13,6 @@ em outros clientes.
 - `assets/` referências de logo extraídas do manual da marca
 - `docs/` design tokens, estrutura da LP, auditoria dos sites de referência e
   integração com CRM
-- `.claude/skills/` skills de agente usadas no desenvolvimento
-  (`home-angels-brand`, `unlazy`, `webapp-testing`)
 - `GATES.md` critérios de aceite da LP
 
 ## Desenvolvimento
