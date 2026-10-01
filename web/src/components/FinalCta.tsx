@@ -1,64 +1,34 @@
+/* eslint-disable @next/next/no-img-element */
 import { LeadForm } from "./LeadForm";
-import { siteConfig } from "@/lib/site-config";
 
 export function FinalCta() {
-  const hasTestimonials = siteConfig.testimonials.length > 0;
-  const hasStats = siteConfig.stats.length > 0;
-
   return (
-    <section
-      id="formulario"
-      className="scroll-mt-20 bg-navy px-6 py-16 sm:py-24"
-    >
-      <div className="mx-auto max-w-[1120px]">
-        <div className="mx-auto max-w-[640px] text-paper">
-          <p className="font-display text-2xl font-medium leading-snug sm:text-3xl">
-            Parte da rede nacional Home Angels Brasil. Cuidadores
-            selecionados e supervisionados tecnicamente, com atendimento
-            humanizado dentro da casa da sua família.
-          </p>
-
-          {hasStats ? (
-            <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4 border-t border-white/20 pt-6">
-              {siteConfig.stats.map((stat) => (
-                <div key={stat.label}>
-                  <div className="font-display text-3xl font-medium">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-sand-light">{stat.label}</div>
-                </div>
-              ))}
+    <section id="formulario" className="scroll-mt-20 lg:py-48">
+      <div className="relative flex w-full justify-center lg:h-878 lg:items-center lg:justify-start">
+        {/* Foto de fundo só existe no desktop */}
+        <img
+          src="/figma/form-bg.jpg"
+          alt=""
+          className="pointer-events-none absolute inset-0 hidden size-full max-w-none object-cover lg:block"
+        />
+        <div className="relative lg:mx-auto lg:w-full lg:max-w-1440 lg:pt-67 lg:pb-68 lg:pl-246">
+          <div className="flex h-791 w-343 flex-col items-center justify-center rounded-33 bg-navy py-48 lg:h-[calc(743.25*var(--spacing))] lg:w-512">
+            <div className="flex h-648 w-296 flex-col items-center justify-center gap-28 lg:w-378">
+              <div className="flex w-full flex-col items-start gap-12 leading-[1.15]">
+                <h2 className="w-full font-inter text-28 font-semibold text-cream">
+                  Fale agora com a equipe Home Angels Burle Marx
+                </h2>
+                <p className="w-full font-helvetica text-16 text-badge">
+                  Atendemos toda a cidade de São Paulo
+                </p>
+                <p className="w-288 font-inter text-16 text-[rgba(250,247,243,0.8)] lg:w-355">
+                  Preencha os dados abaixo e nossa equipe local retorna rapidamente para entender a
+                  necessidade da sua família, sem compromisso
+                </p>
+              </div>
+              <LeadForm />
             </div>
-          ) : null}
-
-          {hasTestimonials ? (
-            <div className="mt-8 grid gap-6 border-t border-white/20 pt-6 sm:grid-cols-2">
-              {siteConfig.testimonials.map((testimonial) => (
-                <blockquote key={testimonial.name}>
-                  <p className="text-paper/90">
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </p>
-                  <footer className="mt-2 text-sm font-semibold text-sand-light">
-                    {testimonial.name}
-                  </footer>
-                </blockquote>
-              ))}
-            </div>
-          ) : null}
-        </div>
-
-        <div className="mx-auto mt-16 max-w-[640px] border-t border-white/20 pt-16 text-center text-paper">
-          <h2 className="mb-3 font-display text-3xl font-medium sm:text-4xl">
-            Fale agora com a equipe Home Angels Burle Marx
-          </h2>
-          <p className="mx-auto max-w-xl text-paper/90">
-            Preencha os dados abaixo. Nossa equipe local retorna rapidamente
-            para entender a necessidade da sua família, sem compromisso.
-          </p>
-        </div>
-
-        <div className="mt-10">
-          <LeadForm />
+          </div>
         </div>
       </div>
     </section>

@@ -1,58 +1,39 @@
 import type { Metadata } from "next";
-import { Fraunces, Public_Sans, Caveat } from "next/font/google";
+import { Libre_Baskerville, Inter } from "next/font/google";
 import "./globals.css";
 
-const displayFont = Fraunces({
-  variable: "--font-display",
+const libre = Libre_Baskerville({
+  variable: "--font-libre",
   subsets: ["latin"],
-  axes: ["opsz", "SOFT"],
-  weight: "variable",
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
-const bodyFont = Public_Sans({
-  variable: "--font-body",
+const inter = Inter({
+  variable: "--font-inter-var",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const scriptFont = Caveat({
-  variable: "--font-script",
-  subsets: ["latin"],
-  weight: ["700"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://homeangelsburlemarx.com.br"),
-  title: "Home Angels Burle Marx | Cuidadores de Idosos com Avaliação Gratuita",
+  title: "Home Angels Burle Marx | Cuidadores de Idosos",
   description:
-    "Cuidador ou enfermeiro profissional na casa de quem você ama, com supervisão técnica e plantões sob medida. Avaliação gratuita e sem compromisso.",
+    "Cuidador profissional dentro da sua casa, com supervisão técnica constante e atendimento sob medida para o seu caso. Atendimento em toda cidade de São Paulo.",
   openGraph: {
     title: "Home Angels Burle Marx | Cuidadores de Idosos",
     description:
-      "Cuidador ou enfermeiro profissional em casa, com supervisão técnica e plantões sob medida. Avaliação gratuita.",
+      "Cuide de quem você ama, sem abrir mão da sua rotina. Atendimento em toda cidade de São Paulo.",
     locale: "pt_BR",
     type: "website",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${displayFont.variable} ${bodyFont.variable} ${scriptFont.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        <noscript>
-          <style>{`.js-reveal { opacity: 1 !important; transform: none !important; }`}</style>
-        </noscript>
-        {children}
-      </body>
+    <html lang="pt-BR" className={`${libre.variable} ${inter.variable} antialiased`}>
+      <body>{children}</body>
     </html>
   );
 }

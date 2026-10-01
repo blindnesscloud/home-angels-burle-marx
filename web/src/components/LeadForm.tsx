@@ -1,214 +1,151 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, type FocusEvent, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { captureAndGetUtmParams } from "@/lib/utm";
 import { normalizePhone } from "@/lib/phone";
+import { CtaSubmit } from "./CtaButton";
+import { Dropdown } from "./Dropdown";
 
-type SubmitState = "idle" | "submitting" | "error";
+const CARE_OPTIONS = [
+  { value: "idoso", label: "Um idoso da família" },
+  { value: "outro", label: "Outra pessoa" },
+] as const;
+
+const URGENCY_OPTIONS = [
+  { value: "imediata", label: "O quanto antes" },
+  { value: "planejando", label: "Estou me planejando" },
+] as const;
+
+const LABEL = "font-helvetica text-16 leading-[1.15] text-cream";
+const INPUT =
+  "h-49 w-full rounded-3 border border-line bg-transparent px-19 font-helvetica text-16 text-cream outline-none focus:border-cream";
 
 export function LeadForm() {
   const router = useRouter();
-  const [state, setState] = useState<SubmitState>("idle");
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [phoneError, setPhoneError] = useState<string | null>(null);
-  const [consentError, setConsentError] = useState<string | null>(null);
-
-  function handlePhoneBlur(event: FocusEvent<HTMLInputElement>) {
-    const value = event.currentTarget.value;
-    if (!value) {
-      setPhoneError(null);
-      return;
-    }
-    setPhoneError(normalizePhone(value) ? null : "Telefone deve ter DDD + número.");
-  }
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setErrorMessage(null);
-
+    setError(null);
     const form = event.currentTarget;
-    const formData = new FormData(form);
+    const data = new FormData(form);
 
-    const phoneValue = String(formData.get("phone") ?? "");
-    if (!normalizePhone(phoneValue)) {
-      setPhoneError("Telefone deve ter DDD + número.");
+    const name = String(data.get("name") ?? "").trim();
+    const phone = String(data.get("phone") ?? "");
+    const careFor = String(data.get("careFor") ?? "");
+    const urgency = String(data.get("urgency") ?? "");
+
+    if (name.length < 2) {
+      setError("Informe seu nome.");
+      form.querySelector<HTMLInputElement>("#name")?.focus();
+      return;
+    }
+    if (!normalizePhone(phone)) {
+      setError("Informe o WhatsApp com DDD.");
+      form.querySelector<HTMLInputElement>("#phone")?.focus();
+      return;
+    }
+    if (!careFor) {
+      setError("Selecione para quem é o cuidado.");
+      form.querySelector<HTMLButtonElement>('[data-dropdown="careFor"]')?.focus();
+      return;
+    }
+    if (!urgency) {
+      setError("Selecione quando você precisa começar.");
+      form.querySelector<HTMLButtonElement>('[data-dropdown="urgency"]')?.focus();
       return;
     }
 
-    const consentGiven = formData.get("consent") === "on";
-    if (!consentGiven) {
-      setConsentError("É necessário autorizar o contato para continuar.");
-      return;
-    }
-    setConsentError(null);
-
-    setState("submitting");
-    const utm = captureAndGetUtmParams();
-
-    const payload = {
-      name: formData.get("name"),
-      phone: phoneValue,
-      careFor: formData.get("careFor"),
-      urgency: formData.get("urgency"),
-      consent: consentGiven,
-      ...utm,
-      page_url: window.location.href,
-    };
-
+    setSubmitting(true);
     try {
       const response = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          name,
+          phone,
+          careFor,
+          urgency,
+          ...captureAndGetUtmParams(),
+          page_url: window.location.href,
+        }),
       });
-
       if (!response.ok) {
         const body = await response.json().catch(() => null);
-        setErrorMessage(
-          body?.error ?? "Não foi possível enviar. Tente novamente."
-        );
-        setState("error");
+        setError(body?.error ?? "Não foi possível enviar. Tente novamente.");
+        setSubmitting(false);
         return;
       }
-
       router.push("/obrigado");
     } catch {
-      setErrorMessage("Falha de conexão. Verifique sua internet e tente novamente.");
-      setState("error");
+      setError("Falha de conexão. Tente novamente.");
+      setSubmitting(false);
     }
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mx-auto flex max-w-lg flex-col gap-4 rounded-2xl bg-paper p-6 sm:p-8"
-      noValidate
-    >
-      <div className="flex flex-col gap-1">
-        <label htmlFor="name" className="text-sm font-semibold text-ink">
-          Seu nome
-        </label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          required
-          minLength={2}
-          autoComplete="name"
-          className="rounded-lg border border-border px-4 py-3 text-base outline-none focus:border-navy"
-          placeholder="Como podemos te chamar?"
-        />
-      </div>
+    <form onSubmit={handleSubmit} noValidate className="flex w-full flex-col items-start">
+      <div className="flex w-full flex-col items-start gap-18">
+        <div className="grid w-full grid-cols-1 gap-8">
+          <label htmlFor="name" className={LABEL}>
+            Nome*
+          </label>
+          <input id="name" name="name" type="text" autoComplete="name" className={INPUT} />
+        </div>
 
-      <div className="flex flex-col gap-1">
-        <label htmlFor="phone" className="text-sm font-semibold text-ink">
-          WhatsApp com DDD
-        </label>
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          required
-          autoComplete="tel"
-          inputMode="tel"
-          aria-invalid={phoneError ? true : undefined}
-          aria-describedby={phoneError ? "phone-error" : undefined}
-          onBlur={handlePhoneBlur}
-          onChange={() => phoneError && setPhoneError(null)}
-          className={`rounded-lg border px-4 py-3 text-base outline-none focus:border-navy ${
-            phoneError ? "border-red-500" : "border-border"
-          }`}
-          placeholder="(19) 99999-9999"
-        />
-        {phoneError ? (
-          <p id="phone-error" role="alert" className="text-sm font-semibold text-red-600">
-            {phoneError}
+        <div className="flex w-full flex-col items-start gap-8">
+          <label htmlFor="phone" className={`${LABEL} w-full`}>
+            WhatsApp com DDD
+          </label>
+          <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" className={INPUT} />
+        </div>
+
+        <div className="flex w-296 flex-col items-start gap-8 lg:w-378">
+          <p id="label-careFor" className={LABEL}>
+            Para quem é o cuidado?
           </p>
-        ) : null}
-      </div>
-
-      <fieldset className="flex flex-col gap-1">
-        <legend className="mb-1 text-sm font-semibold text-ink">
-          Para quem é o cuidado?
-        </legend>
-        <div className="flex gap-4">
-          <label className="flex items-center gap-2 text-ink">
-            <input type="radio" name="careFor" value="idoso" required defaultChecked />
-            Um idoso da família
-          </label>
-          <label className="flex items-center gap-2 text-ink">
-            <input type="radio" name="careFor" value="outro" />
-            Outra pessoa
-          </label>
-        </div>
-      </fieldset>
-
-      <fieldset className="flex flex-col gap-1">
-        <legend className="mb-1 text-sm font-semibold text-ink">
-          Quando você precisa começar?
-        </legend>
-        <div className="flex gap-4">
-          <label className="flex items-center gap-2 text-ink">
-            <input type="radio" name="urgency" value="imediata" required defaultChecked />
-            O quanto antes
-          </label>
-          <label className="flex items-center gap-2 text-ink">
-            <input type="radio" name="urgency" value="planejando" />
-            Estou me planejando
-          </label>
-        </div>
-      </fieldset>
-
-      <div className="flex flex-col gap-1">
-        <label className="flex items-start gap-2 text-sm text-ink">
-          <input
-            type="checkbox"
-            name="consent"
-            required
-            aria-invalid={consentError ? true : undefined}
-            aria-describedby={consentError ? "consent-error" : undefined}
-            onChange={(event) => event.currentTarget.checked && setConsentError(null)}
-            className={`mt-1 ${consentError ? "outline outline-2 outline-red-500" : ""}`}
+          <Dropdown
+            name="careFor"
+            labelId="label-careFor"
+            options={CARE_OPTIONS}
+            className="h-[calc(50.25*var(--spacing))] w-296 lg:w-[calc(380.5*var(--spacing))]"
+            chevronRight="right-19"
           />
-          <span>
-            Autorizo o contato da Home Angels Burle Marx sobre este pedido, de
-            acordo com a{" "}
-            <Link
-              href="/privacidade"
-              target="_blank"
-              className="underline hover:text-navy"
-            >
-              política de privacidade
-            </Link>
-            .
-          </span>
-        </label>
-        {consentError ? (
-          <p id="consent-error" role="alert" className="text-sm font-semibold text-red-600">
-            {consentError}
+        </div>
+
+        <div className="flex w-296 flex-col items-start gap-18 lg:w-378 lg:gap-8">
+          <p id="label-urgency" className={`${LABEL} w-full`}>
+            Quando você precisa começar?
           </p>
-        ) : null}
+          <Dropdown
+            name="urgency"
+            labelId="label-urgency"
+            options={URGENCY_OPTIONS}
+            className="h-[calc(49.25*var(--spacing))] w-296 lg:w-376"
+            chevronRight="right-17 lg:right-[calc(15.5*var(--spacing))]"
+          />
+        </div>
       </div>
 
-      {errorMessage ? (
-        <p role="alert" className="text-sm font-semibold text-red-600">
-          {errorMessage}
-        </p>
-      ) : null}
-
-      <button
-        type="submit"
-        disabled={state === "submitting"}
-        className="mt-2 rounded-lg bg-forest px-6 py-4 text-lg font-bold text-white transition hover:brightness-95 disabled:opacity-60"
-      >
-        {state === "submitting" ? "Enviando..." : "Quero uma avaliação gratuita"}
-      </button>
-
-      <p className="text-center text-xs text-muted">
-        Sem compromisso. Seus dados são usados só para retornarmos seu contato.
-      </p>
+      <div className="mt-28 flex w-full flex-col items-start gap-8">
+        <div className="flex w-280 flex-col items-start">
+          <CtaSubmit disabled={submitting}>
+            {submitting ? "Enviando..." : "Quero uma avaliação gratuíta"}
+          </CtaSubmit>
+        </div>
+        {error ? (
+          <p role="alert" className="w-full font-helvetica text-12 leading-[1.15] text-[#ffd2d2]">
+            {error}
+          </p>
+        ) : null}
+        <div className="flex w-full items-center justify-center">
+          <p className="w-293 font-sfpro text-12 leading-13 tracking-[-0.0192em] text-[rgba(250,247,243,0.8)] opacity-50 lg:w-auto lg:leading-20 lg:whitespace-nowrap">
+            Sem compromisso. Seus dados são usados para retornarmos contato
+          </p>
+        </div>
+      </div>
     </form>
   );
 }
