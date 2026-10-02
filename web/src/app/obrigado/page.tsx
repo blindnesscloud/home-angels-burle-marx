@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ConversionTracking } from "@/components/ConversionTracking";
-import { MobileFooter, PrexterCredit } from "@/components/Footer";
-import { buildWhatsappLink, siteConfig } from "@/lib/site-config";
+import { DesktopFooter, MobileFooter } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Obrigado pelo contato | Home Angels Burle Marx",
@@ -79,67 +77,9 @@ export default function ObrigadoPage() {
             <Message titleWidth="w-643" textWidth="w-677" />
           </div>
         </section>
-        <footer className="relative">
-          <div className="h-372 bg-white" />
-          <div className="flex h-68 items-start justify-center bg-ink pt-[calc(24.75*var(--spacing))]">
-            <PrexterCredit className="w-169" />
-          </div>
-          <div className="absolute top-62 left-1/2 grid h-236 w-916 -translate-x-1/2 grid-cols-4 grid-rows-[2fr_1fr_2fr] gap-x-97 gap-y-8">
-            <div className="relative col-1 row-1 h-61 w-218 overflow-hidden">
-              <img
-                src="/figma/footer-logo.png"
-                alt="Home Angels Cuidadores de Idosos"
-                className="absolute top-0 left-[-0.33%] h-full w-[100.36%] max-w-none"
-              />
-            </div>
-            <p className="col-1 row-2 self-start font-inter text-15 leading-20 tracking-[-0.0153em] text-black/50">
-              Unidade Burle Marx
-            </p>
-            <div className="col-1 row-3 flex flex-col items-start gap-12 font-helvetica text-15 leading-[1.15] text-black">
-              <p className="w-159">Home Angels ⓒ 2026</p>
-              <p className="w-299">{siteConfig.cnpj}</p>
-            </div>
-            <Link
-              href="/privacidade"
-              className="col-3 row-3 flex h-46 w-159 items-end justify-self-start font-helvetica text-12 leading-[1.15] text-black/59"
-            >
-              Política de Privacidade
-            </Link>
-            <p className="col-4 row-1 w-159 font-sfpro text-15 leading-20 tracking-[-0.0153em] text-black">
-              Todo Cuidado é Nosso
-            </p>
-            <div className="col-4 row-2 flex items-start gap-8 self-start">
-              <a
-                href={buildWhatsappLink("Olá! Acabei de preencher o formulário da Home Angels Burle Marx.")}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="relative size-30 shrink-0"
-              >
-                <img
-                  src="/figma/obrigado-whatsapp.svg"
-                  alt=""
-                  className="absolute inset-[-0.2%_0_-0.21%_0] block size-full max-w-none"
-                />
-              </a>
-              <a
-                href={siteConfig.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="relative size-31 shrink-0"
-              >
-                <img src="/figma/obrigado-instagram.svg" alt="" className="absolute inset-0 block size-full max-w-none" />
-              </a>
-            </div>
-            <Link
-              href="/termos"
-              className="col-4 row-3 flex h-46 w-159 items-end justify-self-start self-start font-helvetica text-12 leading-[1.15] text-black/61"
-            >
-              Termos e Condições
-            </Link>
-          </div>
-        </footer>
+        <div className="pt-48">
+          <DesktopFooter />
+        </div>
       </div>
     </div>
   );
