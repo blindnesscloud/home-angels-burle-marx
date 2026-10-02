@@ -45,7 +45,7 @@ export function Hero() {
               Cuidador profissional dentro da sua casa, com supervisão técnica
               constante e atendimento sob medida para o seu caso.
             </p>
-            <CtaLink href="#formulario">Quero uma avaliação gratuíta</CtaLink>
+            <CtaLink href="#formulario">Quero uma avaliação gratuita</CtaLink>
             <p className="w-full font-inter text-12 leading-17 tracking-[-0.0192em] text-cream">
               Sem compromisso. Resposta rápida da rede local
             </p>
@@ -80,7 +80,7 @@ export function Hero() {
               Cuidador profissional dentro da sua casa, com supervisão técnica
               constante e atendimento sob medida para o seu caso.
             </p>
-            <CtaLink href="#formulario">Quero uma avaliação gratuíta</CtaLink>
+            <CtaLink href="#formulario">Quero uma avaliação gratuita</CtaLink>
             <p className="font-inter text-12 leading-17 tracking-[-0.0192em] whitespace-nowrap text-cream">
               Sem compromisso. Resposta rápida
             </p>

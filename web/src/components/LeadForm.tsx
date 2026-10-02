@@ -132,7 +132,7 @@ export function LeadForm() {
       <div className="mt-28 flex w-full flex-col items-start gap-8">
         <div className="flex w-280 flex-col items-start">
           <CtaSubmit disabled={submitting}>
-            {submitting ? "Enviando..." : "Quero uma avaliação gratuíta"}
+            {submitting ? "Enviando..." : "Quero uma avaliação gratuita"}
           </CtaSubmit>
         </div>
         {error ? (
