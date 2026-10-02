@@ -30,6 +30,8 @@ $phone = preg_replace('/\D/', '', $str('phone'));
 if (strlen($phone) < 10 || strlen($phone) > 13) {
     respond(400, ['error' => 'Telefone deve ter DDD + número.']);
 }
+// Formato internacional (+55...) para o CRM não interpretar como número de outro país.
+$phone = '+' . (strlen($phone) <= 11 ? '55' . $phone : $phone);
 
 $careFor = $str('careFor');
 if (!in_array($careFor, ['idoso', 'outro'], true)) {

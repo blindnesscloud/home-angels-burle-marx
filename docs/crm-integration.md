@@ -26,7 +26,7 @@ Payload enviado (JSON):
 ```json
 {
   "name": "string",
-  "phone": "string (E.164 ou formato BR)",
+  "phone": "string, formato internacional (+5511999998888)",
   "careFor": "idoso | outro",
   "urgency": "imediata | planejando",
   "utm_source": "string | null",
