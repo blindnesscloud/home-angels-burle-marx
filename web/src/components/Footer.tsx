@@ -7,13 +7,13 @@ const WA_MESSAGE =
 
 function Social() {
   return (
-    <div className="flex w-77 items-start">
+    <div className="flex items-center justify-center">
       <a
         href={siteConfig.instagramUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram"
-        className="flex h-37 flex-1 items-center p-10"
+        className="flex h-37 items-center p-10"
       >
         <img src="/figma/instagram-icon.svg" alt="" className="size-17" />
       </a>
@@ -22,7 +22,7 @@ function Social() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="WhatsApp"
-        className="flex h-37 flex-1 items-center p-10"
+        className="flex h-37 items-center p-10"
       >
         <img src="/figma/whatsapp-icon.svg" alt="" className="size-17" />
       </a>
@@ -42,83 +42,60 @@ function Logo() {
   );
 }
 
-const SMALL = "font-inter text-12 leading-17 tracking-[-0.0192em] text-black/80";
+const SMALL = "font-inter text-12 leading-17 tracking-[-0.0192em] whitespace-nowrap text-black/80";
+
+// Bloco do rodapé centralizado na página (desktop e mobile).
+function FooterContent() {
+  return (
+    <div className="flex w-full flex-col items-center gap-9 text-center">
+      <div className="flex h-73 w-full justify-center">
+        <Logo />
+      </div>
+      {/* margem negativa compensa o espaçamento após a última letra e mantém o texto no centro */}
+      <p className="-mr-[0.25em] font-inter text-12 leading-20 tracking-[0.25em] whitespace-nowrap text-black/50 uppercase">
+        Unidade Burle Marx
+      </p>
+      <p className="font-inter text-15 leading-20 font-bold tracking-[-0.0153em] whitespace-nowrap text-ink-2">
+        Todo Cuidado é Nosso
+      </p>
+      <Link href="/privacidade" className="font-helvetica text-12 leading-[1.15] text-black/59">
+        Política de Privacidade
+      </Link>
+      <Link href="/termos" className="font-helvetica text-12 leading-[1.15] text-black/61">
+        Termos e Condições
+      </Link>
+      <div className="flex flex-col items-center gap-12">
+        <Social />
+        <div className="flex flex-col items-center">
+          <p className={SMALL}>{siteConfig.cnpj}</p>
+          <p className={SMALL}>Home Angels ⓒ 2026</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function MobileFooter() {
   return (
-      <div className="flex flex-col items-center pt-24 lg:hidden">
-        <div className="flex w-full flex-col items-center justify-start gap-9">
-          <div className="flex h-73 w-full justify-center">
-            <Logo />
-          </div>
-          <p className="h-20 w-194 font-inter text-12 leading-20 tracking-[0.25em] whitespace-nowrap text-black/50 uppercase">
-            Unidade Burle Marx
-          </p>
-          <p className="h-20 w-203 text-center font-inter text-15 leading-20 font-bold tracking-[-0.0153em] text-ink-2">
-            Todo Cuidado é Nosso
-          </p>
-          <Link href="/privacidade" className="w-159 text-center font-helvetica text-12 leading-[1.15] text-black/59">
-            Política de Privacidade
-          </Link>
-          <Link href="/termos" className="w-159 text-center font-helvetica text-12 leading-[1.15] text-black/61">
-            Termos e Condições
-          </Link>
-          <div className="flex h-83 w-120 flex-col items-start gap-12">
-            <Social />
-            <div className="flex flex-col items-start">
-              <div className="flex justify-center pr-10"><p className={`${SMALL} w-118 text-center whitespace-nowrap`}>{siteConfig.cnpj}</p></div>
-              <p className={`${SMALL} w-120 text-center whitespace-nowrap`}>Home Angels ⓒ 2026</p>
-            </div>
-          </div>
-          <div className="flex h-96 w-full items-center justify-center bg-ink">
-            <p className="w-169 font-helvetica text-15 leading-[1.15] text-white">
-              Desenvolvido por Prextel
-            </p>
-          </div>
-        </div>
+    <div className="flex flex-col items-center gap-9 pt-24 lg:hidden">
+      <FooterContent />
+      <div className="flex h-96 w-full items-center justify-center bg-ink">
+        <p className="font-helvetica text-15 leading-[1.15] text-white">Desenvolvido por Prextel</p>
       </div>
+    </div>
   );
 }
 
 function DesktopFooter() {
   return (
-      <div className="hidden flex-col items-center lg:flex">
-        <div className="mx-auto flex h-329 w-full max-w-1440 flex-col items-start justify-start px-251">
-          <div className="flex w-full flex-col items-start gap-9">
-            <div className="h-73 w-full">
-              <div className="w-199">
-                <Logo />
-              </div>
-            </div>
-            <div className="h-20 w-194">
-              <p className="w-184 font-inter text-12 leading-20 tracking-[0.25em] whitespace-nowrap text-black/50 uppercase">
-                Unidade Burle Marx
-              </p>
-            </div>
-            <p className="h-20 w-203 font-inter text-15 leading-20 font-bold tracking-[-0.0153em] text-ink-2">
-              Todo Cuidado é Nosso
-            </p>
-            <Link href="/privacidade" className="w-159 font-helvetica text-12 leading-[1.15] text-black/59">
-              Política de Privacidade
-            </Link>
-            <Link href="/termos" className="w-159 font-helvetica text-12 leading-[1.15] text-black/61">
-              Termos e Condições
-            </Link>
-            <div className="flex h-83 w-120 flex-col items-start gap-12">
-              <Social />
-              <div className="flex flex-col items-start">
-                <div className="flex justify-center pr-10"><p className={`${SMALL} w-109 whitespace-nowrap`}>{siteConfig.cnpj}</p></div>
-                <p className={`${SMALL} w-120 whitespace-nowrap`}>Home Angels ⓒ 2026</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="flex h-71 w-full items-center justify-center bg-ink pt-25 pb-33">
-          <p className="w-169 font-helvetica text-15 leading-[1.15] text-white">
-            Desenvolvido por Prextel
-          </p>
-        </div>
+    <div className="hidden flex-col items-center lg:flex">
+      <div className="mx-auto flex h-329 w-full max-w-1440 flex-col items-center justify-start">
+        <FooterContent />
       </div>
+      <div className="flex h-71 w-full items-center justify-center bg-ink pt-25 pb-33">
+        <p className="font-helvetica text-15 leading-[1.15] text-white">Desenvolvido por Prextel</p>
+      </div>
+    </div>
   );
 }
 
