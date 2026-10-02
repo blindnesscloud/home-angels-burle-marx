@@ -5,7 +5,7 @@ export function Credibility() {
       <div className="mx-auto flex w-369 flex-col items-start gap-14 px-18 leading-[1.15] font-medium text-ink lg:hidden">
         <p className="w-full font-display text-38">Parte da rede nacional Home Angels Brasil.</p>
         <p className="w-full font-inter text-21">
-          Cuidadores selecionados e supervisionados técnicamente, com atendimento humanizado dentro
+          Cuidadores selecionados e supervisionados tecnicamente, com atendimento humanizado dentro
           da casa da sua família
         </p>
       </div>

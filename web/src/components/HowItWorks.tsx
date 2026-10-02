@@ -2,7 +2,7 @@
 const STEPS = [
   {
     n: "1",
-    title: "Avaliação gratuíta",
+    title: "Avaliação gratuita",
     desc: "Entendemos a necessidade da sua família por telefone ou em uma visita. Tudo sem custo e sem compromisso, essa é uma etapa importante para sabermos exatamente como te atender.",
     badge: "flex w-44 flex-col items-start py-8 pr-15 pl-16",
     numColor: "text-ink",
