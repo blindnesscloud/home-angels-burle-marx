@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { siteConfig } from "@/lib/site-config";
+import { CookiePreferencesButton } from "./CookiePreferencesButton";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade | Home Angels Burle Marx",
@@ -61,6 +62,19 @@ export default function PrivacidadePage() {
             organizar o atendimento. O acesso é restrito à equipe responsável
             pelo atendimento local.
           </p>
+        </section>
+
+        <section className="flex flex-col gap-8">
+          <h2 className="font-inter text-24 leading-[1.15] font-bold text-ink">
+            Cookies
+          </h2>
+          <p className="font-inter text-16 leading-[1.15] text-black/80">
+            Com a sua autorização, usamos cookies do Google (Google Ads e Tag
+            Manager) e da Meta (Facebook e Instagram) para medir o resultado
+            dos nossos anúncios. Se você recusar, esses cookies não são
+            gravados e a página continua funcionando normalmente.
+          </p>
+          <CookiePreferencesButton />
         </section>
 
         <section className="flex flex-col gap-8">

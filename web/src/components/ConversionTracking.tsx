@@ -3,12 +3,6 @@
 import { useEffect } from "react";
 import { siteConfig } from "@/lib/site-config";
 
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-  }
-}
-
 /**
  * Dispara a conversão do Google Ads em /obrigado. Não faz nada até que
  * siteConfig.googleAdsConversionLabel seja substituído pelo valor real
