@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ConversionTracking } from "@/components/ConversionTracking";
 import { DesktopFooter, MobileFooter } from "@/components/Footer";
 
@@ -43,11 +44,9 @@ export default function ObrigadoPage() {
       {/* Mobile: o Figma não tem esta tela em mobile; segue o padrão da home mobile */}
       <div className="flex flex-col gap-24 lg:hidden">
         <header className="flex justify-center pt-24">
-          <img
-            src="/figma/header-logo-mobile.svg"
-            alt="Home Angels"
-            className="h-33 w-[calc(193.123*var(--spacing))]"
-          />
+          <Link href="/" aria-label="Home Angels, voltar para a página inicial" className="flex">
+            <img src="/figma/header-logo-mobile.svg" alt="" className="h-33 w-[calc(193.123*var(--spacing))]" />
+          </Link>
         </header>
         <section className="relative h-595 overflow-hidden">
           <div aria-hidden="true" className="absolute top-0 left-1/2 h-full w-1163 -translate-x-1/2">
@@ -63,11 +62,9 @@ export default function ObrigadoPage() {
       {/* Desktop: frame "Muito Obrigado" (1440 x 1289) */}
       <div className="hidden lg:block">
         <header className="flex h-155 items-start justify-center pt-42">
-          <img
-            src="/figma/header-logo-desktop.svg"
-            alt="Home Angels"
-            className="h-[calc(76.6*var(--spacing))] w-[calc(448.28*var(--spacing))]"
-          />
+          <Link href="/" aria-label="Home Angels, voltar para a página inicial" className="flex">
+            <img src="/figma/header-logo-desktop.svg" alt="" className="h-[calc(76.6*var(--spacing))] w-[calc(448.28*var(--spacing))]" />
+          </Link>
         </header>
         <section className="relative h-694 overflow-hidden">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0">
