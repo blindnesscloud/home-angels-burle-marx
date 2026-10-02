@@ -56,7 +56,7 @@ conexão direta com uma objeção de conversão.
 
 - Next.js (App Router, TypeScript, Tailwind), rota única `/` (mais `/obrigado`
   pós-conversão para tracking de conversão do Google Ads).
-- Formulário submete via rota de API própria (`/api/lead`) que valida os dados
+- Formulário submete via endpoint PHP próprio (`/api/lead.php`) que valida os dados
   e encaminha para o Go High Level; ver `docs/crm-integration.md`.
 - Lazy loading de imagens (padrão unlazy), SEO básico (metadata, OG image),
   Lighthouse acessibilidade e performance >= 90.

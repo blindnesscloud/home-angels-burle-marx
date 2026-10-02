@@ -25,9 +25,10 @@ if (siteConfig.includes("TODO_CONVERSION_LABEL")) {
   );
 }
 
-if (!process.env.GHL_INBOUND_WEBHOOK_URL) {
+const leadConfig = readFileSync(path.join(here, "..", "public", "api", "config.php"), "utf8");
+if (leadConfig.includes("COLE_AQUI_A_URL_DO_WEBHOOK_DO_GHL")) {
   problems.push(
-    "GHL_INBOUND_WEBHOOK_URL não está definida no ambiente — formulário vai falhar ao enviar lead para o CRM. Ver docs/crm-integration.md."
+    "URL do webhook do GHL não configurada em public/api/config.php — o formulário vai falhar ao enviar o lead. Ver docs/crm-integration.md."
   );
 }
 

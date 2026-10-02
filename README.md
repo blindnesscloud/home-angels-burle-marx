@@ -19,10 +19,12 @@ Este projeto segue o mesmo padrão de qualidade estabelecido no projeto Prexter
 
 ```bash
 cd web
-cp .env.example .env.local   # preencher GHL_INBOUND_WEBHOOK_URL
 npm install
 npm run dev
 ```
+
+O `npm run dev` não executa PHP, então o envio do formulário só funciona no
+servidor (Hostinger) ou com `php -S localhost:4500 -t out` depois do build.
 
 ## Build e validação
 
@@ -54,6 +56,26 @@ em `web/public/figma/` vêm do próprio arquivo Figma.
 usuário real, recomendações de estratégia de aquisição/CRM). Ler antes de
 priorizar a próxima rodada de mudanças.
 
-## Deploy
+## Deploy (Hostinger, hospedagem compartilhada)
 
-Alvo de deploy: Vercel.
+O site é exportado como HTML estático (`output: "export"`), e o envio de leads
+é feito por `web/public/api/lead.php`. Não precisa de Node no servidor.
+
+1. Gerar o pacote: `cd web && npm run build`. A pasta `web/out/` é o site
+   inteiro. Compactar o **conteúdo** dela (não a pasta) em um `.zip`, incluindo
+   os arquivos ocultos `.htaccess` e `api/.htaccess`.
+2. No hPanel, remover o WordPress padrão: Sites → WordPress → Instalações →
+   Desinstalar. Ou, pelo Gerenciador de Arquivos, apagar o conteúdo de
+   `public_html` (baixar um backup antes, se quiser).
+3. Gerenciador de Arquivos → `public_html` → Upload do `.zip` → botão direito →
+   Extrair para `public_html`. Conferir se `index.html`, `.htaccess` e a pasta
+   `api/` ficaram direto em `public_html`, e não dentro de uma subpasta.
+4. Editar `public_html/api/config.php` e colar a URL do Inbound Webhook do GHL
+   no lugar de `COLE_AQUI_A_URL_DO_WEBHOOK_DO_GHL`. Esse valor fica só no
+   servidor, nunca no repositório.
+5. Garantir que o SSL do domínio está ativo (hPanel → Segurança → SSL). O
+   `.htaccess` redireciona tudo para HTTPS.
+6. Testar: abrir o site, enviar o formulário e conferir o contato no GHL.
+
+Atualizações seguintes: refazer o build e subir o novo `.zip` por cima,
+**sem** sobrescrever `api/config.php` (ou colar a URL de novo depois).
