@@ -80,7 +80,7 @@ export function MobileFooter() {
     <div className="flex flex-col items-center gap-9 pt-24 lg:hidden">
       <FooterContent />
       <div className="flex h-96 w-full items-center justify-center bg-ink">
-        <p className="font-helvetica text-15 leading-[1.15] text-white">Desenvolvido por Prextel</p>
+        <p className="font-helvetica text-15 leading-[1.15] text-white">Desenvolvido por Prexter</p>
       </div>
     </div>
   );
@@ -93,7 +93,7 @@ function DesktopFooter() {
         <FooterContent />
       </div>
       <div className="flex h-71 w-full items-center justify-center bg-ink pt-25 pb-33">
-        <p className="font-helvetica text-15 leading-[1.15] text-white">Desenvolvido por Prextel</p>
+        <p className="font-helvetica text-15 leading-[1.15] text-white">Desenvolvido por Prexter</p>
       </div>
     </div>
   );

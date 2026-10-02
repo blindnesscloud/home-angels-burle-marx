@@ -82,7 +82,7 @@ export default function ObrigadoPage() {
         <footer className="relative">
           <div className="h-372 bg-white" />
           <div className="flex h-68 items-start justify-center bg-ink pt-[calc(24.75*var(--spacing))]">
-            <p className="w-169 font-helvetica text-15 leading-[1.15] text-white">Desenvolvido por Prextel</p>
+            <p className="w-169 font-helvetica text-15 leading-[1.15] text-white">Desenvolvido por Prexter</p>
           </div>
           <div className="absolute top-62 left-1/2 grid h-236 w-916 -translate-x-1/2 grid-cols-4 grid-rows-[2fr_1fr_2fr] gap-x-97 gap-y-8">
             <div className="relative col-1 row-1 h-61 w-218 overflow-hidden">
