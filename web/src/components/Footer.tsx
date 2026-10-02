@@ -75,9 +75,9 @@ function FooterContent() {
   );
 }
 
-export function PrexterCredit({ className = "" }: { className?: string }) {
+function PrexterCredit() {
   return (
-    <p className={`${className} font-helvetica text-15 leading-[1.15] text-white`}>
+    <p className="font-helvetica text-15 leading-[1.15] text-white">
       Desenvolvido por{" "}
       <a
         href="https://prexter.com.br"
@@ -102,7 +102,7 @@ export function MobileFooter() {
   );
 }
 
-function DesktopFooter() {
+export function DesktopFooter() {
   return (
     <div className="hidden flex-col items-center lg:flex">
       <div className="mx-auto flex h-329 w-full max-w-1440 flex-col items-center justify-start">
