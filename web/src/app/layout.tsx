@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Libre_Baskerville, Inter } from "next/font/google";
 import Script from "next/script";
 import { GOOGLE_ADS_ID, GTM_ID, META_PIXEL_ID } from "@/lib/tracking";
+import { CONSENT_KEY } from "@/lib/consent";
+import { CookieBanner } from "@/components/CookieBanner";
 import "./globals.css";
 
 const libre = Libre_Baskerville({
@@ -36,6 +38,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-BR" className={`${libre.variable} ${inter.variable} antialiased`}>
       <head>
+        {/* Consent Mode v2: tudo negado até o visitante aceitar no banner de cookies */}
+        <Script id="consent-default" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+var c = null; try { c = localStorage.getItem('${CONSENT_KEY}'); } catch (e) {}
+var s = c === 'granted' ? 'granted' : 'denied';
+gtag('consent', 'default', { ad_storage: s, ad_user_data: s, ad_personalization: s, analytics_storage: s, wait_for_update: 500 });`}
+        </Script>
+
         {/* Google Tag Manager */}
         <Script id="gtm" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -67,6 +78,8 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
+var hc = null; try { hc = localStorage.getItem('${CONSENT_KEY}'); } catch (e) {}
+fbq('consent', hc === 'granted' ? 'grant' : 'revoke');
 fbq('init', '${META_PIXEL_ID}');
 fbq('track', 'PageView');`}
         </Script>
@@ -93,6 +106,7 @@ fbq('track', 'PageView');`}
           />
         </noscript>
         {children}
+        <CookieBanner />
       </body>
     </html>
   );
