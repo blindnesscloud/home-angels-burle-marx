@@ -75,12 +75,28 @@ function FooterContent() {
   );
 }
 
+export function PrexterCredit({ className = "" }: { className?: string }) {
+  return (
+    <p className={`${className} font-helvetica text-15 leading-[1.15] text-white`}>
+      Desenvolvido por{" "}
+      <a
+        href="https://prexter.com.br"
+        target="_blank"
+        rel="noopener"
+        className="underline-offset-2 hover:underline"
+      >
+        Prexter
+      </a>
+    </p>
+  );
+}
+
 export function MobileFooter() {
   return (
     <div className="flex flex-col items-center gap-9 pt-24 lg:hidden">
       <FooterContent />
       <div className="flex h-96 w-full items-center justify-center bg-ink">
-        <p className="font-helvetica text-15 leading-[1.15] text-white">Desenvolvido por Prexter</p>
+        <PrexterCredit />
       </div>
     </div>
   );
@@ -93,7 +109,7 @@ function DesktopFooter() {
         <FooterContent />
       </div>
       <div className="flex h-71 w-full items-center justify-center bg-ink pt-25 pb-33">
-        <p className="font-helvetica text-15 leading-[1.15] text-white">Desenvolvido por Prexter</p>
+        <PrexterCredit />
       </div>
     </div>
   );
