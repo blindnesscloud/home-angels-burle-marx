@@ -2,28 +2,24 @@
 
 ## Decisão
 
-Formulário próprio (Next.js, controle total de design/performance) → rota de
-API interna `/api/lead` → adaptador de CRM. Trocar de CRM no futuro significa
-trocar a implementação de um adaptador, nunca o formulário nem o design.
+Formulário próprio (Next.js exportado como site estático) → endpoint PHP
+`/api/lead.php` na hospedagem (Hostinger) → Go High Level. Trocar de CRM no
+futuro significa alterar só o envio dentro de `lead.php`, nunca o formulário
+nem o design.
 
 ```
-[Formulário LP] → POST /api/lead → valida payload → adapter.sendLead(payload)
+[Formulário LP] → POST /api/lead.php → valida payload → POST no webhook do CRM
                                                           │
                                                           └── hoje: Go High Level
-                                                              amanhã: outro CRM
 ```
 
 ## Adaptador ativo: Go High Level (Inbound Webhook)
 
 Caminho mais simples e robusto para o franqueado: no GHL, criar um Workflow com
-gatilho **"Inbound Webhook"**, copiar a URL gerada e configurar como variável de
-ambiente. Não exige gerenciar token de API nem Location ID no código.
-
-Variável de ambiente necessária (não commitar valor real):
-
-```
-GHL_INBOUND_WEBHOOK_URL=<url do webhook fornecida pelo workflow do GHL>
-```
+gatilho **"Inbound Webhook"**, copiar a URL gerada e colar em
+`api/config.php` no servidor. Não exige gerenciar token de API nem Location ID
+no código. O `.htaccess` da pasta `api/` bloqueia o acesso direto ao
+`config.php`.
 
 Payload enviado (JSON):
 
@@ -43,15 +39,13 @@ Payload enviado (JSON):
 
 ## Trocar de CRM no futuro
 
-Implementar um novo arquivo em `web/src/lib/crm/<novo-crm>.ts` respeitando a
-mesma assinatura `sendLead(payload): Promise<void>` usada pelo adapter do GHL
-(`web/src/lib/crm/ghl.ts`), e apontar `web/src/lib/crm/index.ts` para o novo
-adapter. Nenhuma outra parte do código muda.
+Alterar o trecho de envio (curl) no fim de `web/public/api/lead.php` para o
+formato do novo CRM. A validação e o formulário continuam iguais.
 
 ## Pendência do cliente antes de produção
 
 1. Criar o Workflow "Inbound Webhook" no GHL da unidade Burle Marx e enviar a
-   URL gerada (é um segredo — nunca commitar no repositório, apenas em
-   variável de ambiente no provedor de deploy).
+   URL gerada (é um segredo — nunca commitar no repositório, apenas colar em
+   `public_html/api/config.php` na Hostinger).
 2. Confirmar quais campos de UTM o time de mídia paga já usa nas campanhas do
    Google Ads, para garantir que o mapeamento de origem bate no CRM.

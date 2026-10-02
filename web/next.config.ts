@@ -1,8 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Permite acessar o servidor de dev via tunel (cloudflared) para preview
-  // ao vivo. Next bloqueia por padrao recursos de dev vindos de host externo.
+  // Site estático para a hospedagem Hostinger (Apache/LiteSpeed + PHP).
+  // O formulário envia para public/api/lead.php, que repassa ao Go High Level.
+  output: "export",
+  trailingSlash: true,
+  images: { unoptimized: true },
+  // Permite acessar o servidor de dev via túnel (cloudflared).
   allowedDevOrigins: ["*.trycloudflare.com"],
 };
 

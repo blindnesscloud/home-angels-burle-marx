@@ -24,8 +24,8 @@ Mobile e Muito Obrigado), formulário integrado ao Go High Level via webhook.
 - [x] G5: botões com os 3 estados do componente "Botão CTA" (Default #5C925C, Hover #97B197, Click #2E492E)
   EVIDENCE: Playwright — default rgb(92,146,92), hover rgb(151,177,151).
 
-- [x] G6: formulário funcional (validação, dropdowns, envio para /api/lead)
-  EVIDENCE: Playwright — erro "Informe seu nome." sem nome; dropdowns abrem no estado Default2 do Figma e selecionam; envio chega na API (502 esperado enquanto GHL_INBOUND_WEBHOOK_URL não estiver configurada).
+- [x] G6: formulário funcional (validação, dropdowns, envio para /api/lead.php)
+  EVIDENCE: Playwright — erro "Informe seu nome." sem nome; dropdowns abrem no estado Default2 do Figma e selecionam; envio chega na API. lead.php testado com PHP 8.3: payload inválido → 400; válido → repassado ao webhook (mock) com telefone normalizado → 200.
 
 - [ ] G7: pronto para publicar
   CHECK: node -e "process.exit(require('child_process').spawnSync('npm',['run','check:launch-ready'],{cwd:'web',shell:true,stdio:'inherit'}).status)"
