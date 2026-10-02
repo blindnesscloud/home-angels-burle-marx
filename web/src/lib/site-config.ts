@@ -6,9 +6,8 @@ export const PLACEHOLDER_WHATSAPP_NUMBER = "5519000000000";
 
 export const siteConfig = {
   unitName: "Home Angels Burle Marx",
-  // TODO(cliente): substituir pelo telefone/WhatsApp real da unidade.
-  whatsappNumber: PLACEHOLDER_WHATSAPP_NUMBER,
-  whatsappDisplay: "(19) 0000-0000",
+  whatsappNumber: "5511963977653",
+  whatsappDisplay: "(11) 96397-7653",
   // TODO(cliente): substituir pelo endereço real da unidade franqueada.
   address: "Burle Marx, Campinas/SP",
   // CNPJ vem do mockup aprovado no Figma (PREXTER).
