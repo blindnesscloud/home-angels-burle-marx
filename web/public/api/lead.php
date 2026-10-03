@@ -33,13 +33,17 @@ if (strlen($phone) < 10 || strlen($phone) > 13) {
 // Formato internacional (+55...) para o CRM não interpretar como número de outro país.
 $phone = '+' . (strlen($phone) <= 11 ? '55' . $phone : $phone);
 
+// Textos iguais aos do formulário (LeadForm.tsx), para e-mails e notificações do CRM.
+$careForLabels = ['idoso' => 'Um idoso da família', 'outro' => 'Outra pessoa'];
+$urgencyLabels = ['imediata' => 'O quanto antes', 'planejando' => 'Estou me planejando'];
+
 $careFor = $str('careFor');
-if (!in_array($careFor, ['idoso', 'outro'], true)) {
+if (!isset($careForLabels[$careFor])) {
     respond(400, ['error' => 'Selecione para quem é o cuidado.']);
 }
 
 $urgency = $str('urgency');
-if (!in_array($urgency, ['imediata', 'planejando'], true)) {
+if (!isset($urgencyLabels[$urgency])) {
     respond(400, ['error' => 'Selecione a urgência.']);
 }
 
@@ -48,9 +52,11 @@ $payload = [
     'phone' => $phone,
     'careFor' => $careFor,
     'urgency' => $urgency,
-    'utm_source' => $str('utm_source') ?: null,
-    'utm_campaign' => $str('utm_campaign') ?: null,
-    'utm_medium' => $str('utm_medium') ?: null,
+    'careFor_label' => $careForLabels[$careFor],
+    'urgency_label' => $urgencyLabels[$urgency],
+    'utm_source' => mb_substr($str('utm_source'), 0, 200) ?: null,
+    'utm_campaign' => mb_substr($str('utm_campaign'), 0, 200) ?: null,
+    'utm_medium' => mb_substr($str('utm_medium'), 0, 200) ?: null,
     'page_url' => mb_substr($str('page_url'), 0, 500),
     'submitted_at' => gmdate('c'),
 ];

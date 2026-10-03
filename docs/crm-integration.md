@@ -29,6 +29,8 @@ Payload enviado (JSON):
   "phone": "string, formato internacional (+5511999998888)",
   "careFor": "idoso | outro",
   "urgency": "imediata | planejando",
+  "careFor_label": "Um idoso da família | Outra pessoa",
+  "urgency_label": "O quanto antes | Estou me planejando",
   "utm_source": "string | null",
   "utm_campaign": "string | null",
   "utm_medium": "string | null",
